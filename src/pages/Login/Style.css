@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+:root {
+  --cor-destaque: #4400ff;
+  --cor-cinza: rgba(0,0,0,0.3);
+}
+
+* {
+  padding: 0px;
+  margin: 0px;
+}
+
+#icons {
+  position: absolute;
+  display: flex;
+  z-index: 5;
+  width: 100px;
+}
+
+.icon {
+  position: absolute;
+  background-color: white;
+  padding: 10px;
+  width: 100px;
+  height: 100px;
+  margin: 20px;
+  border-radius: 15px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon:nth-child(1){
+  top: 140px
+}
+
+.icon > img{
+  padding: 10px;
+  position: absolute;
+  display: inline;
+  width: 100px;
+  height: 100px;
+}
+
+.left-image {
+  float: left;
+  height: 100vh;
+  width: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+#login-image {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+  z-index: 1;
+}
+
+#gradient {
+  float: left;
+
+  height: 100vh;
+  width: 50%;
+  position: absolute;
+  z-index: 3;
+  background-image: linear-gradient(to left, rgba(255, 255, 255, 0.87), rgba(0,0,0,0));
+}
+
+.right-form {
+  font-family: 'Outfit', sans-serif;
+  display: inline;
+  float: right;
+  width: 50%;
+  display: inline-flex;
+  justify-content: center;
+}
+
+.formulario {
+  position:absolute;
+  top: 150px;
+}
+
+.formulario > h1{
+  font-weight: bold;
+  font-size: 32pt;
+  margin-bottom: 50px;
+}
+.formulario > h2 {
+  font-weight: bold;
+  text-align: center;
+  font-size: 32pt;
+  margin-bottom: 25px;
+}
+
+form > input {
+  display: block;
+  padding: 10px;
+  width: 100%;
+  border: 1px solid var(--cor-cinza);
+  border-radius: 5px;
+  font-size: 20pt;
+}
+
+.strong {
+  color: var(--cor-destaque);
+}
+
+.aviso {
+  font-size: 20pt;
+  text-align: center;
+}
+
+#submit-button {
+  background-color: var(--cor-destaque);
+  font-family: 'Poppins', sans-serif;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  padding: 10px;
+  font-size: 24pt;
+}
+
+#submit-button:hover {
+  cursor: pointer;
+}
+
+#formulario > * {
+  margin-top: 25px;
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+  display:none
+}
