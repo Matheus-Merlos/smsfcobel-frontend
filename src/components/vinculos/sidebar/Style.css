@@ -1,0 +1,52 @@
+:root {
+  --branco: #F7F7F7;
+  --linha-color: #888888;
+}
+
+main {
+  height: 89.5vh;
+}
+
+#sidebar {
+  width: 16.80%;
+  height: 100%;
+
+  background-color: var(--branco);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#sidebar div {
+  width: 100%;
+  height: 10%;
+
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+#sidebar div:hover {
+  cursor: pointer;
+  background-color: #F1F1F1;
+}
+
+#sidebar img {
+  width: auto;
+  height: 60%;
+  margin-right: 5%;
+  margin-left: 5%;
+}
+
+#sidebar hr {
+  color: var(--linha-color);
+  width: 90%;
+  border: 0.5px solid var(--linha-color);
+}
+
+#sidebar h1 {
+  font-weight: normal;
+  font-size: 24pt;
+}

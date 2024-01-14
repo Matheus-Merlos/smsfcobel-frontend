@@ -26,7 +26,7 @@ function Login() {
           <p className="aviso">
             Sem acesso? <span className="strong">Clique aqui</span>
           </p>
-          <form action="#" method="post" id="formulario">
+          <form method="post" id="formulario">
             <input type="number" name="cpf" id="cpf" placeholder="CPF" />
             <input type="password" name="password" placeholder="Senha" />
             <p className="strong aviso">Esqueci minha senha</p>

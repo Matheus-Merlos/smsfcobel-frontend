@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&display=swap');
+
+:root {
+  --cor-principal: #9F8FFE;
+  --branco: #FFFEFE;
+}
+
+* {
+  padding: 0px;
+  margin: 0px;
+  font-family: 'Outfit', sans-serif;
+}
+
+#cabecalio {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--cor-principal);
+  height: 10.5vh;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.cabecalio-part {
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.cabecalio-part * {
+  margin: 10px;
+}
+
+.cabecalio-part img {
+  height: 80%;
+}
+
+#cabecalio h1 {
+  color: var(--branco);
+  font-size: 32pt;
+  font-weight: normal;
+}
+
+#perfil h1 {
+  font-size: 24pt;
+}
