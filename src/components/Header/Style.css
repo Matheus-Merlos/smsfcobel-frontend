@@ -44,3 +44,12 @@
 #perfil h1 {
   font-size: 24pt;
 }
+
+@media screen and (min-width: 992px) and (max-width: 1280px) {
+  #cabecalio h1 {
+    font-size: 28pt;
+  }
+  #perfil h1 {
+    font-size: 20pt;
+  }
+}

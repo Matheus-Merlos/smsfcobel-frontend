@@ -134,7 +134,3 @@
 #formulario > * {
   margin-top: 25px;
 }
-
-input[type="number"]::-webkit-inner-spin-button {
-  display:none
-}

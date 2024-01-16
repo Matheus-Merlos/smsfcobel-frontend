@@ -20,31 +20,68 @@ export default function Funcionarios() {
   const [nomeMae, setNomeMae] = useState('');
   const [nomePai, setNomePai] = useState('');
 
+  // Função para formatar a data de DD/MM/AAAA para AAAA-MM-DD, pois é o que a REST API Suporta
+  function formatDate(date) {
+    const dateAsString = date.split('/');
+    return `${dateAsString[2]}-${dateAsString[1]}-${dateAsString[0]}`;
+  }
+
   async function handleSubmit(e) {
     e.preventDefault();
 
     const funcionario = {
-      nome,
+      nome: nome.toUpperCase(),
       sexo_codigo: sexo,
       cpf,
       rg,
-      emissao_rg: dataEmissaoRG,
+      emissao_rg: formatDate(dataEmissaoRG),
       cns,
-      email,
-      data_nascimento: dataNascimento,
-      nome_mae: nomeMae,
-      nome_pai: nomePai,
+      email: email.toLowerCase(),
+      data_nascimento: formatDate(dataNascimento),
+      nome_mae: nomeMae.toUpperCase(),
+      nome_pai: nomePai.toUpperCase(),
     };
     await axios.post('/vinculos/api/funcionarios/', funcionario);
   }
 
+  // Função para formatar a data em um input de texto
+  const handleBirthDateInputChange = (e) => {
+    let value = e.target.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+
+    if (value.length >= 2) {
+      // Insere a barra após os dois primeiros caracteres
+      value = `${value.slice(0, 2)}/${value.slice(2)}`;
+    }
+
+    if (value.length >= 5) {
+      // Insere a segunda barra após os cinco primeiros caracteres
+      value = `${value.slice(0, 5)}/${value.slice(5)}`;
+    }
+
+    setDataNascimento(value);
+  };
+
+  const handleRGInputChange = (e) => {
+    let value = e.target.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+
+    if (value.length >= 2) {
+      // Insere a barra após os dois primeiros caracteres
+      value = `${value.slice(0, 2)}/${value.slice(2)}`;
+    }
+
+    if (value.length >= 5) {
+      // Insere a segunda barra após os cinco primeiros caracteres
+      value = `${value.slice(0, 5)}/${value.slice(5)}`;
+    }
+
+    setDataEmissaoRG(value);
+  };
+
   useEffect(() => {
+    // Função para pegar a lista de gêneros da nossa REST API
     async function getGenders() {
       const response = await axios.get('/vinculos/api/sexos/');
-      const gendersData = response.data.map((gender) => ({
-        id: gender.id,
-        descricao: gender.descricao,
-      }));
+      const gendersData = response.data;
 
       setGenders(gendersData);
     }
@@ -119,9 +156,9 @@ export default function Funcionarios() {
                   name="data_nascimento"
                   id="data_nascimento"
                   placeholder="Data de Nascimento"
-                  maxLength="8"
+                  maxLength="10"
                   value={dataNascimento}
-                  onChange={(e) => setDataNascimento(e.target.value)}
+                  onChange={handleBirthDateInputChange}
                 />
                 <input
                   type="number"
@@ -136,9 +173,9 @@ export default function Funcionarios() {
                   name="emissao_rg"
                   id="emissao_rg"
                   placeholder="Data de Emissão do RG"
-                  maxLength="8"
+                  maxLength="10"
                   value={dataEmissaoRG}
-                  onChange={(e) => setDataEmissaoRG(e.target.value)}
+                  onChange={handleRGInputChange}
                 />
               </div>
               <div className="formulario-parte dois-inputs">

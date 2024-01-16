@@ -1,104 +1,144 @@
-:root {
-  --border-color: #888888;
-  --cor-botao: #6932FF;
+@media all {
+    :root {
+    --border-color: #888888;
+    --cor-botao: #6932FF;
+  }
+
+  main {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  #direita {
+    width: 83.2%;
+    height: 89.3vh;
+    float: right;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid black;
+  }
+
+  #formulario-funcionario {
+    width: 85%;
+    height: 85%;
+  }
+
+  #titulo {
+    font-size: 32pt;
+  }
+
+  #descricao {
+    font-size: 20pt;
+    margin-bottom: 20px;
+  }
+
+  #aviso {
+    margin-top: 20px;
+    font-size: 18pt;
+  }
+
+  #preenchimento {
+    margin-top: 20px;
+
+    text-align: center;
+  }
+
+  #formulario-funcionario input, select {
+    border: none;
+    border-bottom: 2px solid var(--border-color);
+    padding: 10px;
+    background-color: white;
+
+    font-size: 18pt;
+
+    margin: 1% 0 1% 0;
+  }
+
+  .formulario-parte {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .nome-sexo input {
+    width: 70%;
+  }
+  .nome-sexo select {
+    width: 20%;
+  }
+
+  #email {
+    width: 100%;
+  }
+
+  .dois-inputs input {
+    width: 45%;
+  }
+
+  #tres-inputs input {
+    width: 30%;
+    height: 90%;
+  }
+
+  input:focus {
+    outline: none;
+  }
+
+  #criar-funcionario {
+    margin-top: 20px;
+    border: none;
+    background-color: var(--cor-botao);
+    color: white;
+    font-size: 32pt;
+
+    display: inline-block;
+
+    border-radius: 50px;
+    width: 20%;
+    padding: 10px;
+  }
+
+  #criar-funcionario:hover {
+    cursor: pointer;
+  }
+
 }
 
-main {
-  display: flex;
-  justify-content: space-between;
+@media screen and (min-width: 992px) and (max-width: 1280px) {
+  #direita {
+    height: 89vh;
+  }
+  #formulario-funcionario {
+    width: 90%;
+    height: 90%;
+  }
+  #titulo {
+    font-size: 28pt;
+  }
+  #descricao {
+    font-size: 16pt;
+    margin-bottom: 15px;
+  }
+  #aviso {
+    margin-top: 10px;
+    font-size: 14pt;
+  }
+  #preenchimento {
+    margin-top: 7px;
+  }
+  #formulario-funcionario input, select {
+    padding: 5px;
+    font-size: 16pt;
+  }
+  #criar-funcionario {
+    margin-top: 15px;
+    font-size: 26pt;
+
+    border-radius: 40px;
+    width: 20%;
+    padding: 5px;
+  }
 }
 
-#direita {
-  width: 83.2%;
-  height: 89.3vh;
-  float: right;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  border: 1px solid black;
-}
-
-#formulario-funcionario {
-  width: 85%;
-  height: 85%;
-}
-
-#titulo {
-  font-size: 32pt;
-}
-
-#descricao {
-  font-size: 20pt;
-  margin-bottom: 20px;
-}
-
-#aviso {
-  margin-top: 20px;
-  font-size: 18pt;
-}
-
-#preenchimento {
-  margin-top: 20px;
-
-  text-align: center;
-}
-
-#formulario-funcionario input, select {
-  border: none;
-  border-bottom: 2px solid var(--border-color);
-  padding: 10px;
-  background-color: white;
-
-  font-size: 18pt;
-
-  margin: 1% 0 1% 0;
-}
-
-.formulario-parte {
-  display: flex;
-  justify-content: space-between;
-}
-
-.nome-sexo input {
-  width: 70%;
-}
-.nome-sexo select {
-  width: 20%;
-}
-
-#email {
-  width: 100%;
-}
-
-.dois-inputs input {
-  width: 45%;
-}
-
-#tres-inputs input {
-  width: 30%;
-  height: 90%;
-}
-
-input:focus {
-  outline: none;
-}
-
-#criar-funcionario {
-  margin-top: 20px;
-  border: none;
-  background-color: var(--cor-botao);
-  color: white;
-  font-size: 32pt;
-
-  display: inline-block;
-
-  border-radius: 50px;
-  width: 20%;
-  padding: 10px;
-}
-
-#criar-funcionario:hover {
-  cursor: pointer;
-}

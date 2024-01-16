@@ -48,5 +48,16 @@ main {
 
 #sidebar h1 {
   font-weight: normal;
-  font-size: 24pt;
+  font-size: 22pt;
+}
+
+
+@media screen and (min-width: 992px) and (max-width: 1280px) {
+  #sidebar h1 {
+    font-size: 18pt;
+  }
+  #sidebar img {
+    width: auto;
+    height: 55%;
+  }
 }
