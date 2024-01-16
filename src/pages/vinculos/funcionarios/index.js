@@ -26,7 +26,7 @@ export default function Funcionarios() {
     return `${dateAsString[2]}-${dateAsString[1]}-${dateAsString[0]}`;
   }
 
-  async function handleSubmit(e) {
+  async function handleSubmitFuncionario(e) {
     e.preventDefault();
 
     const funcionario = {
@@ -101,7 +101,11 @@ export default function Funcionarios() {
             <hr />
             <p id="aviso">Insira os dados abaixo:</p>
 
-            <form method="post" id="preenchimento" onSubmit={handleSubmit}>
+            <form
+              method="post"
+              id="preenchimento"
+              onSubmit={handleSubmitFuncionario}
+            >
               <div className="formulario-parte nome-sexo">
                 <input
                   type="text"

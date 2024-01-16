@@ -4,6 +4,7 @@ import { Routes, Route, BrowserRouter } from 'react-router-dom';
 
 import Login from './pages/Login';
 import Funcionarios from './pages/vinculos/funcionarios';
+import Vincular from './pages/vinculos/vincular';
 
 import PrivateRoute from './services/PrivateRoute';
 
@@ -16,6 +17,10 @@ function App() {
           <Route
             path="/vinculos/funcionarios/"
             element={<PrivateRoute element={<Funcionarios />} />}
+          />
+          <Route
+            path="/vinculos/vincular/"
+            element={<PrivateRoute element={<Vincular />} />}
           />
         </Routes>
       </BrowserRouter>
