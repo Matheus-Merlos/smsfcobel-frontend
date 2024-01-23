@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import Header from '../../../components/Header';
 import Sidebar from '../../../components/vinculos/sidebar';
 
@@ -26,12 +27,22 @@ export default function Funcionarios() {
     return `${dateAsString[2]}-${dateAsString[1]}-${dateAsString[0]}`;
   }
 
+  // Função para verificar se um valor é nulo, se for, transformar ele em um (porque o select está bugando n sei como)
+  function formatValue(setFunction, value) {
+    const newValue = value === null ? 1 : value;
+    setFunction(newValue);
+    return newValue;
+  }
+
+  const accessToken = useSelector((state) => state.reducer.accessToken);
+  axios.defaults.headers.Authorization = `Bearer ${accessToken}`;
+
   async function handleSubmitFuncionario(e) {
     e.preventDefault();
 
     const funcionario = {
       nome: nome.toUpperCase(),
-      sexo_codigo: sexo,
+      sexo_codigo: formatValue(setSexo, sexo),
       cpf,
       rg,
       emissao_rg: formatDate(dataEmissaoRG),
@@ -41,7 +52,11 @@ export default function Funcionarios() {
       nome_mae: nomeMae.toUpperCase(),
       nome_pai: nomePai.toUpperCase(),
     };
-    await axios.post('/vinculos/api/funcionarios/', funcionario);
+    try {
+      await axios.post('/vinculos/api/funcionarios/', funcionario);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   // Função para formatar a data em um input de texto

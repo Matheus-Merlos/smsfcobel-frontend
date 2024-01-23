@@ -1,23 +1,19 @@
-import { createStore } from 'redux';
+import { persistStore } from 'redux-persist';
+import { legacy_createStore as createStore, applyMiddleware } from 'redux';
+import createSagaMiddleware from 'redux-saga';
+import persistedReducer from './reduxPersist';
+import rootSaga from './rootSaga';
 
-const initialState = {
-  isLoggedIn: false,
-  acessToken: '',
-  refreshToken: '',
-};
+import reducer from './rootReducer';
 
-function reducer(action, state = initialState) {
-  switch (action.type) {
-    case 'LOGIN_EFETUADO': {
-      const newState = { ...state };
-      newState.isLoggedIn = true;
-      return newState;
-    }
-    default:
-      return state;
-  }
-}
+const sagaMiddleware = createSagaMiddleware();
 
-const store = createStore(reducer);
+const store = createStore(
+  persistedReducer(reducer),
+  applyMiddleware(sagaMiddleware)
+);
 
+sagaMiddleware.run(rootSaga);
+
+export const persistor = persistStore(store);
 export default store;

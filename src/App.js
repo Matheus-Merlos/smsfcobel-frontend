@@ -1,30 +1,35 @@
 import './App.css';
 import React from 'react';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 
 import Login from './pages/Login';
 import Funcionarios from './pages/vinculos/funcionarios';
 import Vincular from './pages/vinculos/vincular';
 
 import PrivateRoute from './services/PrivateRoute';
+import store, { persistor } from './store';
 
 function App() {
   return (
-    <div>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/login/" element={<Login />} />
-          <Route
-            path="/vinculos/funcionarios/"
-            element={<PrivateRoute element={<Funcionarios />} />}
-          />
-          <Route
-            path="/vinculos/vincular/"
-            element={<PrivateRoute element={<Vincular />} />}
-          />
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <Provider store={store}>
+      <PersistGate persistor={persistor}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/login/" element={<Login />} />
+            <Route
+              path="/vinculos/funcionarios/"
+              element={<PrivateRoute element={<Funcionarios />} />}
+            />
+            <Route
+              path="/vinculos/vincular/"
+              element={<PrivateRoute element={<Vincular />} />}
+            />
+          </Routes>
+        </BrowserRouter>
+      </PersistGate>
+    </Provider>
   );
 }
 

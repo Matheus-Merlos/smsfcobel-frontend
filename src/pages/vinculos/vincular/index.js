@@ -2,10 +2,13 @@ import React, { useEffect, useState } from 'react';
 
 import './Style.css';
 
+import { useSelector } from 'react-redux';
 import axios from '../../../services/axios';
 
 import Header from '../../../components/Header';
 import Sidebar from '../../../components/vinculos/sidebar';
+
+import history from '../../../services/history';
 
 export default function Vincular() {
   const [funcionarios, setFuncionarios] = useState([]);
@@ -13,18 +16,21 @@ export default function Vincular() {
   const [locals, setLocals] = useState([]);
   const [types, setTypes] = useState([]);
 
-  const [funcionarioPOST, setFuncionarioPOST] = useState('');
+  const [funcionarioPOST = 1, setFuncionarioPOST] = useState('');
   const [cargaHoraria, setCargaHoraria] = useState('');
-  const [funcaoPOST, setFuncaoPOST] = useState('');
+  const [funcaoPOST = 1, setFuncaoPOST] = useState('');
   const [dataEntrada, setDataEntrada] = useState('');
-  const [localPOST, setLocalPOST] = useState('');
-  const [dataSaida, setDataSaida] = useState('');
-  const [tipoPOST, setTipoPOST] = useState('');
+  const [localPOST = 1, setLocalPOST] = useState('');
+  const [dataSaida = 1, setDataSaida] = useState('');
+  const [tipoPOST = 1, setTipoPOST] = useState('');
 
   function formatDate(date) {
     const dateAsString = date.split('/');
     return `${dateAsString[2]}-${dateAsString[1]}-${dateAsString[0]}`;
   }
+
+  const accessToken = useSelector((state) => state.reducer.accessToken);
+  axios.defaults.headers.Authorization = `Bearer ${accessToken}`;
 
   async function handleSubmitVinculo(e) {
     e.preventDefault();
@@ -40,7 +46,11 @@ export default function Vincular() {
       tipo_vinculo_codigo: 1,
     };
 
-    console.log(vinculo);
+    try {
+      await axios.post('/vinculos/api/', vinculo);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   const handleEnterDate = (e) => {
@@ -77,8 +87,13 @@ export default function Vincular() {
 
   useEffect(() => {
     async function fetchFuncionarios() {
-      const response = await axios.get('/vinculos/api/funcionarios/');
-      setFuncionarios(response.data);
+      try {
+        const response = await axios.get('/vinculos/api/funcionarios/');
+        setFuncionarios(response.data);
+      } catch (error) {
+        history.push('/login/');
+        history.go();
+      }
     }
     async function fetchFunctions() {
       const response = await axios.get('/vinculos/api/funcoes/');
@@ -97,7 +112,7 @@ export default function Vincular() {
     fetchFunctions();
     fetchLocals();
     fetchTypes();
-  }, []);
+  }, [accessToken]);
   return (
     <>
       <Header />
