@@ -16,17 +16,22 @@ export default function Vincular() {
   const [locals, setLocals] = useState([]);
   const [types, setTypes] = useState([]);
 
-  const [funcionarioPOST = 1, setFuncionarioPOST] = useState('');
+  const [funcionarioPOST, setFuncionarioPOST] = useState('');
   const [cargaHoraria, setCargaHoraria] = useState('');
-  const [funcaoPOST = 1, setFuncaoPOST] = useState('');
+  const [funcaoPOST, setFuncaoPOST] = useState('');
   const [dataEntrada, setDataEntrada] = useState('');
-  const [localPOST = 1, setLocalPOST] = useState('');
-  const [dataSaida = 1, setDataSaida] = useState('');
-  const [tipoPOST = 1, setTipoPOST] = useState('');
+  const [localPOST, setLocalPOST] = useState('');
+  const [dataSaida, setDataSaida] = useState('');
+  const [tipoPOST, setTipoPOST] = useState('');
 
   function formatDate(date) {
     const dateAsString = date.split('/');
     return `${dateAsString[2]}-${dateAsString[1]}-${dateAsString[0]}`;
+  }
+
+  function clearVinculoForm() {
+    const funcs = [setCargaHoraria, setDataEntrada, setDataSaida];
+    funcs.forEach((func) => func(''));
   }
 
   const accessToken = useSelector((state) => state.reducer.accessToken);
@@ -36,24 +41,27 @@ export default function Vincular() {
     e.preventDefault();
 
     const vinculo = {
-      funcionario_codigo: funcionarioPOST,
+      funcionario_codigo: funcionarioPOST === '' ? 1 : funcaoPOST,
       carga_horaria: cargaHoraria,
       data_entrada: formatDate(dataEntrada),
       data_saida: formatDate(dataSaida),
-      funcao_codigo: funcaoPOST,
-      local_codigo: localPOST,
-      tipo_codigo: tipoPOST,
+      funcao_codigo: funcaoPOST === '' ? 1 : funcaoPOST,
+      local_codigo: localPOST === '' ? 1 : localPOST,
+      tipo_codigo: tipoPOST === '' ? 1 : tipoPOST,
       tipo_vinculo_codigo: 1,
     };
 
     try {
       await axios.post('/vinculos/api/', vinculo);
+
+      clearVinculoForm();
     } catch (error) {
       console.log(error);
     }
   }
 
-  const handleEnterDate = (e) => {
+  // Função para formatar a data em um input de texto
+  function handleDateInputChange(e, setFunction) {
     let value = e.target.value.replace(/\D/g, ''); // Remove caracteres não numéricos
 
     if (value.length >= 2) {
@@ -66,24 +74,8 @@ export default function Vincular() {
       value = `${value.slice(0, 5)}/${value.slice(5)}`;
     }
 
-    setDataEntrada(value);
-  };
-
-  const handleExitDate = (e) => {
-    let value = e.target.value.replace(/\D/g, ''); // Remove caracteres não numéricos
-
-    if (value.length >= 2) {
-      // Insere a barra após os dois primeiros caracteres
-      value = `${value.slice(0, 2)}/${value.slice(2)}`;
-    }
-
-    if (value.length >= 5) {
-      // Insere a segunda barra após os cinco primeiros caracteres
-      value = `${value.slice(0, 5)}/${value.slice(5)}`;
-    }
-
-    setDataSaida(value);
-  };
+    setFunction(value);
+  }
 
   useEffect(() => {
     async function fetchFuncionarios() {
@@ -170,7 +162,7 @@ export default function Vincular() {
                   id="data_entrada"
                   placeholder="Data de Entrada"
                   value={dataEntrada}
-                  onChange={handleEnterDate}
+                  onChange={(e) => handleDateInputChange(e, setDataEntrada)}
                 />
                 <select
                   name="local"
@@ -192,7 +184,7 @@ export default function Vincular() {
                   id="data_saida"
                   placeholder="Data de Saída"
                   value={dataSaida}
-                  onChange={handleExitDate}
+                  onChange={(e) => handleDateInputChange(e, setDataSaida)}
                 />
                 <select
                   name="tipo"

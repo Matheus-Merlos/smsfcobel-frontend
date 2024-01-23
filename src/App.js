@@ -1,8 +1,12 @@
-import './App.css';
 import React from 'react';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
+
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import './App.css';
 
 import Login from './pages/Login';
 import Funcionarios from './pages/vinculos/funcionarios';
@@ -14,6 +18,7 @@ import store, { persistor } from './store';
 function App() {
   return (
     <Provider store={store}>
+      <ToastContainer autoClose={3000} className="toast-container" />
       <PersistGate persistor={persistor}>
         <BrowserRouter>
           <Routes>
