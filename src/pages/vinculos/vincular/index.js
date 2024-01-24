@@ -3,12 +3,19 @@ import React, { useEffect, useState } from 'react';
 import './Style.css';
 
 import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import axios from '../../../services/axios';
 
 import Header from '../../../components/Header';
 import Sidebar from '../../../components/vinculos/sidebar';
 
 import history from '../../../services/history';
+
+import {
+  isValidDate,
+  handleDateInputChange,
+  formatDate,
+} from '../../../services/utils';
 
 export default function Vincular() {
   const [funcionarios, setFuncionarios] = useState([]);
@@ -24,11 +31,6 @@ export default function Vincular() {
   const [dataSaida, setDataSaida] = useState('');
   const [tipoPOST, setTipoPOST] = useState('');
 
-  function formatDate(date) {
-    const dateAsString = date.split('/');
-    return `${dateAsString[2]}-${dateAsString[1]}-${dateAsString[0]}`;
-  }
-
   function clearVinculoForm() {
     const funcs = [setCargaHoraria, setDataEntrada, setDataSaida];
     funcs.forEach((func) => func(''));
@@ -39,6 +41,31 @@ export default function Vincular() {
 
   async function handleSubmitVinculo(e) {
     e.preventDefault();
+
+    let errors = false;
+
+    function validateAndToast(condition, message) {
+      if (condition) {
+        toast.info(message);
+        errors = true;
+      }
+    }
+
+    const requiredFields = [cargaHoraria, dataEntrada, dataSaida];
+    if (requiredFields.some((field) => field.length === 0)) {
+      toast.info('Por favor, preencha todos os campos!');
+      return;
+    }
+
+    validateAndToast(
+      !isValidDate(dataEntrada),
+      'A data de entrada é inválida!'
+    );
+    validateAndToast(!isValidDate(dataSaida), 'A data de saída é inválida!');
+
+    if (errors) {
+      return;
+    }
 
     const vinculo = {
       funcionario_codigo: funcionarioPOST === '' ? 1 : funcaoPOST,
@@ -55,26 +82,11 @@ export default function Vincular() {
       await axios.post('/vinculos/api/', vinculo);
 
       clearVinculoForm();
+
+      toast.success('Funcionário criado com sucesso!');
     } catch (error) {
-      console.log(error);
+      toast.error(`Erro interno do sistema: ${error}`);
     }
-  }
-
-  // Função para formatar a data em um input de texto
-  function handleDateInputChange(e, setFunction) {
-    let value = e.target.value.replace(/\D/g, ''); // Remove caracteres não numéricos
-
-    if (value.length >= 2) {
-      // Insere a barra após os dois primeiros caracteres
-      value = `${value.slice(0, 2)}/${value.slice(2)}`;
-    }
-
-    if (value.length >= 5) {
-      // Insere a segunda barra após os cinco primeiros caracteres
-      value = `${value.slice(0, 5)}/${value.slice(5)}`;
-    }
-
-    setFunction(value);
   }
 
   useEffect(() => {

@@ -6,6 +6,14 @@ import Sidebar from '../../../components/vinculos/sidebar';
 
 import axios from '../../../services/axios';
 
+import history from '../../../services/history';
+
+import {
+  isValidDate,
+  handleDateInputChange,
+  formatDate,
+} from '../../../services/utils';
+
 import './Style.css';
 
 export default function Funcionarios() {
@@ -21,12 +29,6 @@ export default function Funcionarios() {
   const [dataEmissaoRG, setDataEmissaoRG] = useState('');
   const [nomeMae, setNomeMae] = useState('');
   const [nomePai, setNomePai] = useState('');
-
-  // Função para formatar a data de DD/MM/AAAA para AAAA-MM-DD, pois é o que a REST API Suporta
-  function formatDate(date) {
-    const dateAsString = date.split('/');
-    return `${dateAsString[2]}-${dateAsString[1]}-${dateAsString[0]}`;
-  }
 
   function clearFuncionarioForm() {
     const funcs = [
@@ -58,43 +60,27 @@ export default function Funcionarios() {
     function emailIsValid(emai) {
       return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emai);
     }
-
-    function isValidDate(dateString) {
-      const regex = /^(\d{2})\/(\d{2})\/(\d{4})$/;
-      if (!regex.test(dateString)) {
-        return false;
-      }
-
-      const [, day, month, year] = regex.exec(dateString);
-
-      const dayInt = parseInt(day, 10);
-      const monthInt = parseInt(month, 10);
-      const yearInt = parseInt(year, 10);
-
-      if (
-        dayInt < 1 ||
-        dayInt > 31 ||
-        monthInt < 1 ||
-        monthInt > 12 ||
-        yearInt < 1000 ||
-        yearInt > 9999
-      ) {
-        return false;
-      }
-
-      const daysInMonth = new Date(yearInt, monthInt, 0).getDate();
-      if (dayInt > daysInMonth) {
-        return false;
-      }
-
-      return true;
-    }
-
     function validateAndToast(condition, message) {
       if (condition) {
         toast.info(message);
         errors = true;
       }
+    }
+
+    const requiredFields = [
+      nome,
+      cpf,
+      email,
+      cns,
+      nomeMae,
+      nomePai,
+      rg,
+      dataNascimento,
+      dataEmissaoRG,
+    ];
+    if (requiredFields.some((field) => field.length === 0)) {
+      toast.info('Por favor, preencha todos os campos!');
+      return;
     }
 
     validateAndToast(!nameIsValid(nome), 'O nome informado é inválido!');
@@ -167,32 +153,19 @@ export default function Funcionarios() {
     }
   }
 
-  // Função para formatar a data em um input de texto
-  function handleDateInputChange(e, setFunction) {
-    let value = e.target.value.replace(/\D/g, ''); // Remove caracteres não numéricos
-
-    if (value.length >= 2) {
-      // Insere a barra após os dois primeiros caracteres
-      value = `${value.slice(0, 2)}/${value.slice(2)}`;
-    }
-
-    if (value.length >= 5) {
-      // Insere a segunda barra após os cinco primeiros caracteres
-      value = `${value.slice(0, 5)}/${value.slice(5)}`;
-    }
-
-    setFunction(value);
-  }
-
   useEffect(() => {
     // Função para pegar a lista de gêneros da nossa REST API
     async function getGenders() {
-      const response = await axios.get('/vinculos/api/sexos/');
-      const gendersData = response.data;
+      try {
+        const response = await axios.get('/vinculos/api/sexos/');
+        const gendersData = response.data;
 
-      setGenders(gendersData);
+        setGenders(gendersData);
+      } catch (error) {
+        history.push('/login/');
+        history.go();
+      }
     }
-
     getGenders();
   }, []);
 
