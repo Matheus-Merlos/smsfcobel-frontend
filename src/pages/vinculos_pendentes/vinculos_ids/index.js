@@ -40,6 +40,7 @@ export default function VinculosPendentes() {
           {vinculosPendentes.map((vinculo) => (
             <Vinculo
               profissionalID={vinculo.profissional_id}
+              vinculoID={vinculo.id}
               nome={vinculo.nome}
               local={vinculo.local}
               criacao={vinculo.data_criacao}
@@ -53,6 +54,8 @@ export default function VinculosPendentes() {
               nomePai={vinculo.nome_pai}
               cns={vinculo.cns}
               funcao={vinculo.funcao}
+              operadorCodigo={vinculo.operador}
+              profissionalCodigo={vinculo.profissional}
             />
           ))}
         </div>

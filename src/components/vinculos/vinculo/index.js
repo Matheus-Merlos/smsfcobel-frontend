@@ -8,6 +8,7 @@ import axios from '../../../services/axios';
 
 export default function Vinculo({
   profissionalID,
+  vinculoID,
   nome,
   local,
   criacao,
@@ -21,6 +22,8 @@ export default function Vinculo({
   nomePai,
   cns,
   funcao,
+  // operadorCodigo,
+  // profissionalCodigo,
 }) {
   const [modalIsVisible, setModalIsVisible] = useState(false);
 
@@ -32,16 +35,21 @@ export default function Vinculo({
   }
 
   async function handleVinculoPatch() {
-    const vinculoPatch = {
+    const profissionalPatch = {
       operador: parseInt(operador, 10),
       profissional: parseInt(profissional, 10),
+    };
+
+    const vinculoPatch = {
+      status_ids_id: 2,
     };
 
     try {
       await axios.patch(
         `/vinculos/api/funcionarios/${profissionalID}/`,
-        vinculoPatch
+        profissionalPatch
       );
+      await axios.patch(`/vinculos/api/${vinculoID}/`, vinculoPatch);
       toast.success('Vínculo atualizado com sucesso!');
 
       toggleModal();
@@ -162,6 +170,7 @@ export default function Vinculo({
 
 Vinculo.propTypes = {
   profissionalID: PropTypes.string.isRequired,
+  vinculoID: PropTypes.string.isRequired,
   nome: PropTypes.string.isRequired,
   local: PropTypes.string.isRequired,
   criacao: PropTypes.string.isRequired,
@@ -175,4 +184,6 @@ Vinculo.propTypes = {
   nomePai: PropTypes.string.isRequired,
   cns: PropTypes.string.isRequired,
   funcao: PropTypes.string.isRequired,
+  // operadorCodigo: PropTypes.string.isRequired,
+  // profissionalCodigo: PropTypes.string.isRequired,
 };
