@@ -1,0 +1,51 @@
+.menu-principal {
+  position: absolute;
+  width: 30vw;
+  height: auto;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 5%;
+
+  background-color: white;
+  border: 1px solid lightgrey;
+}
+
+.menu-principal div {
+  overflow: hidden;
+  padding: 10%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  border: 1px solid white;
+}
+
+.menu-principal div:hover {
+  cursor: pointer;
+
+  border: 1px solid lightgray;
+}
+
+.menu-principal div > img {
+  width: 65%;
+  height: auto;
+
+  margin-bottom: 10%;
+}
+
+.menu-principal div > p {
+  text-align: center;
+
+  font-size: 14pt;
+  font-weight: lighter;
+}
+
+#flecha {
+  border: 1px solid black;
+
+  width: 5%;
+  height: 5%;
+}

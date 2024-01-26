@@ -12,6 +12,7 @@
 }
 
 #cabecalio {
+  position: relative;
   display: flex;
   justify-content: space-between;
   background-color: var(--cor-principal);
@@ -44,6 +45,21 @@
 #perfil h1 {
   font-size: 24pt;
 }
+
+.menu:hover {
+  cursor: pointer;
+}
+
+.modal {
+  position: absolute;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal.fade-in {
+  opacity: 1;
+}
+
 
 @media screen and (min-width: 992px) and (max-width: 1280px) {
   #cabecalio h1 {

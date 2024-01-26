@@ -8,12 +8,13 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .Toastify__toast {
+  padding: 2.5%;
   font-family: 'Roboto', 'Arial', sans-serif;
   border: 1px solid lightgray;
 }
 
 .Toastify__toast-icon {
-  width: 13%;
+  width: 15%;
   margin-right: 5%;
 }
 

@@ -83,7 +83,7 @@ export default function Vincular() {
 
       clearVinculoForm();
 
-      toast.success('Funcionário criado com sucesso!');
+      toast.success('Funcionário vinculado com sucesso!');
     } catch (error) {
       toast.error(`Erro interno do sistema: ${error}`);
     }
