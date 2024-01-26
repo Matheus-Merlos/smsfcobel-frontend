@@ -21,7 +21,6 @@ export default function VinculosPendentes() {
       const responseData = response.data;
 
       setVinculosPendentes(responseData);
-      console.log(responseData);
     }
 
     // Configura o intervalo apenas uma vez
@@ -40,11 +39,20 @@ export default function VinculosPendentes() {
         <div id="direita-vinculos">
           {vinculosPendentes.map((vinculo) => (
             <Vinculo
+              profissionalID={vinculo.profissional_id}
               nome={vinculo.nome}
               local={vinculo.local}
               criacao={vinculo.data_criacao}
               inicio={vinculo.data_entrada}
               tipo={vinculo.tipo}
+              cpf={vinculo.cpf}
+              rg={vinculo.rg}
+              expedicaoRG={vinculo.emissao_rg}
+              email={vinculo.email}
+              nomeMae={vinculo.nome_mae}
+              nomePai={vinculo.nome_pai}
+              cns={vinculo.cns}
+              funcao={vinculo.funcao}
             />
           ))}
         </div>
