@@ -1,0 +1,63 @@
+:root {
+  --cor-vinculo-background: #DCEFFF;
+  --cor-enfase: #342F2F;
+  --cor-destaque: #16193B;
+  --cor-tipo: #35478C;
+  --cor-botao: #5598EA;
+}
+
+#vinculo {
+  position: relative;
+  background-color: var(--cor-vinculo-background);
+  width: 90%;
+  padding: 2%;
+  border-radius: 30px;
+  box-shadow: 2px 2px 5px grey;
+}
+
+#tipo-vinculo {
+  color: var(--cor-tipo);
+  display: block;
+}
+
+#vinculo p {
+  font-size: 24pt;
+  margin: 0.25%;
+}
+
+.enfase {
+  color: var(--cor-enfase);
+}
+
+.destaque {
+  color: var(--cor-destaque);
+}
+
+#datas {
+  display: flex;
+  justify-content: space-between;
+}
+
+#button-container {
+  text-align: right;
+}
+
+#botao-adicionar {
+  position: absolute;
+  background-color: var(--cor-botao);
+  color: white;
+  padding: 1.25%;
+  font-size: 24pt;
+  border-radius: 80px;
+  width: 15%;
+  border: none;
+
+  right: -5%;
+  top: 45%;
+
+  transform: translate(-50%, -50%);
+}
+
+#botao-adicionar:hover {
+  cursor: pointer;
+}

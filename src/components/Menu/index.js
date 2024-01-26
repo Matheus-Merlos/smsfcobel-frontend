@@ -28,7 +28,16 @@ export default function Menu() {
         <img src={vinculoIcon} alt="teste" />
         <p>Vínculos CNES/IDS</p>
       </div>
-      <div role="button">
+      <div
+        role="button"
+        tabIndex="0"
+        onClick={() => redirect('/vinculos/vinculos-ids/')}
+        onKeyDown={(e) => {
+          if (e.key === 'v') {
+            redirect('/vinculos/vinculos-ids/');
+          }
+        }}
+      >
         <img src={vinculoPendenteIcon} alt="teste" />
         <p>Vínculos Pendentes</p>
       </div>

@@ -68,7 +68,7 @@ export default function Vincular() {
     }
 
     const vinculo = {
-      funcionario_codigo: funcionarioPOST === '' ? 1 : funcaoPOST,
+      funcionario_codigo: funcionarioPOST === '' ? 1 : funcionarioPOST,
       carga_horaria: cargaHoraria,
       data_entrada: formatDate(dataEntrada),
       data_saida: formatDate(dataSaida),
@@ -86,6 +86,7 @@ export default function Vincular() {
       toast.success('Funcionário vinculado com sucesso!');
     } catch (error) {
       toast.error(`Erro interno do sistema: ${error}`);
+      console.log(error);
     }
   }
 

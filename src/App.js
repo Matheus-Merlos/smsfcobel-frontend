@@ -12,6 +12,8 @@ import Login from './pages/Login';
 import Funcionarios from './pages/vinculos/funcionarios';
 import Vincular from './pages/vinculos/vincular';
 
+import VinculosIDS from './pages/vinculos_pendentes/vinculos_ids';
+
 import PrivateRoute from './services/PrivateRoute';
 import store, { persistor } from './store';
 
@@ -30,6 +32,10 @@ function App() {
             <Route
               path="/vinculos/vincular/"
               element={<PrivateRoute element={<Vincular />} />}
+            />
+            <Route
+              path="/vinculos/vinculos-ids/"
+              element={<PrivateRoute element={<VinculosIDS />} />}
             />
           </Routes>
         </BrowserRouter>
