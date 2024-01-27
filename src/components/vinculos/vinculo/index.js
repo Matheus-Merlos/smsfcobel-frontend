@@ -22,8 +22,8 @@ export default function Vinculo({
   nomePai,
   cns,
   funcao,
-  // operadorCodigo,
-  // profissionalCodigo,
+  operadorCodigo,
+  profissionalCodigo,
 }) {
   const [modalIsVisible, setModalIsVisible] = useState(false);
 
@@ -34,30 +34,169 @@ export default function Vinculo({
     setModalIsVisible(!modalIsVisible);
   }
 
+  async function patchVinculo() {
+    const vinculoPatch = {
+      status_ids_id: 2,
+    };
+    try {
+      await axios.patch(`/vinculos/api/${vinculoID}/`, vinculoPatch);
+
+      toast.success('Vínculo atualizado com sucesso!');
+
+      toggleModal();
+    } catch (error) {
+      toast.error(`Erro interno do sistema: ${error}`);
+    }
+  }
+
   async function handleVinculoPatch() {
     const profissionalPatch = {
       operador: parseInt(operador, 10),
       profissional: parseInt(profissional, 10),
     };
 
-    const vinculoPatch = {
-      status_ids_id: 2,
-    };
+    if (operador === '') {
+      toast.info("Preencha o campo de 'operador' para continuar");
+      return;
+    }
 
     try {
       await axios.patch(
         `/vinculos/api/funcionarios/${profissionalID}/`,
         profissionalPatch
       );
-      await axios.patch(`/vinculos/api/${vinculoID}/`, vinculoPatch);
-      toast.success('Vínculo atualizado com sucesso!');
+      await patchVinculo();
 
-      toggleModal();
       setOperador('');
       setProfissional('');
     } catch (error) {
       toast.error(`Erro interno do sistema: ${error}`);
     }
+  }
+
+  function formatCPF(cpfToFormat) {
+    const regex = /^(\d{3})(\d{3})(\d{3})(\d{2})$/;
+    return cpfToFormat.replace(regex, '$1.$2.$3-$4');
+  }
+
+  // Formatar Cartão SUS
+  function formatCNS(cartaoSUS) {
+    const regex = /^(\d{3})(\d{4})(\d{4})(\d{4})$/;
+    return cartaoSUS.replace(regex, '$1.$2.$3.$4');
+  }
+
+  function selectModal() {
+    return operador !== '' ? (
+      <section id="escurecimento">
+        <div id="vinculo-modal">
+          <h1 id="titulo-modal">Adicionar Vínculo</h1>
+          <hr />
+          <p className="titulo-vinculo">
+            Nome: <span className="enfase">{nome}</span>
+          </p>
+          <div className="informacoes-vinculo">
+            <p className="titulo-vinculo">
+              CPF: <span className="enfase">{formatCPF(cpf)}</span>
+            </p>
+            <p className="titulo-vinculo">
+              RG: <span className="enfase">{rg}</span>
+            </p>
+            <p className="titulo-vinculo">
+              Expedição:<span className="enfase">{expedicaoRG}</span>
+            </p>
+          </div>
+          <p className="titulo-vinculo">
+            Local: <span className="enfase">{local}</span>
+          </p>
+          <p className="titulo-vinculo">
+            E-mail: <span className="enfase">{email}</span>
+          </p>
+          <div className="informacoes-vinculo">
+            <p className="titulo-vinculo">
+              Nome da Mãe: <span className="enfase">{nomeMae}</span>
+            </p>
+            <p className="titulo-vinculo">
+              Nome do Pai: <span className="enfase">{nomePai}</span>
+            </p>
+          </div>
+          <p className="titulo-vinculo">
+            CNS: <span className="enfase">{formatCNS(cns)}</span>
+          </p>
+          <p className="titulo-vinculo">
+            Função: <span className="enfase">{funcao}</span>
+          </p>
+          <div className="informacoes-vinculo inputs-vinculo-completo">
+            <div>
+              <label
+                htmlFor="operador"
+                className="titulo-vinculo label-vinculo-completo"
+              >
+                Operador:
+              </label>
+              <input
+                type="number"
+                name="operador"
+                id="operador"
+                placeholder="Código de Operador"
+                onChange={(e) => setOperador(e.target.value)}
+              />
+            </div>
+            <div>
+              <label htmlFor="profissional" className="titulo-vinculo">
+                Profissional:
+              </label>
+              <input
+                type="number"
+                name="profissional"
+                id="profissional"
+                placeholder="Código de Profissional"
+                onChange={(e) => setProfissional(e.target.value)}
+              />
+            </div>
+          </div>
+          <div id="botoes">
+            <button type="button" onClick={toggleModal}>
+              Cancelar
+            </button>
+            <button type="button" onClick={handleVinculoPatch}>
+              Adicionar
+            </button>
+          </div>
+        </div>
+      </section>
+    ) : (
+      <section id="escurecimento">
+        <div id="vinculo-modal">
+          <h1 id="titulo-modal">Adicionar Vínculo</h1>
+          <hr />
+          <p className="titulo-vinculo">
+            Nome: <span className="enfase">{nome}</span>
+          </p>
+          <p className="titulo-vinculo">
+            Local: <span className="enfase">{local}</span>
+          </p>
+          <p className="titulo-vinculo">
+            Função: <span className="enfase">{funcao}</span>
+          </p>
+          <div className="informacoes-vinculo">
+            <p className="titulo-vinculo">
+              Operador: <span className="enfase">{operadorCodigo}</span>
+            </p>
+            <p className="titulo-vinculo">
+              Profissional: <span className="enfase">{profissionalCodigo}</span>
+            </p>
+          </div>
+          <div id="botoes">
+            <button type="button" onClick={toggleModal}>
+              Cancelar
+            </button>
+            <button type="button" onClick={patchVinculo}>
+              Adicionar
+            </button>
+          </div>
+        </div>
+      </section>
+    );
   }
 
   return (
@@ -85,85 +224,7 @@ export default function Vinculo({
           </button>
         </div>
       </section>
-      {modalIsVisible && (
-        <section id="escurecimento">
-          <div id="vinculo-completo-modal">
-            <h1 id="titulo-modal-vinculo-completo">Adicionar Vínculo</h1>
-            <hr />
-            <p className="titulo-vinculo">
-              Nome: <span className="enfase">{nome}</span>
-            </p>
-            <div className="informacoes-vinculo-completo">
-              <p className="titulo-vinculo">
-                CPF: <span className="enfase">{cpf}</span>
-              </p>
-              <p className="titulo-vinculo">
-                RG: <span className="enfase">{rg}</span>
-              </p>
-              <p className="titulo-vinculo">
-                Expedição:<span className="enfase">{expedicaoRG}</span>
-              </p>
-            </div>
-            <p className="titulo-vinculo">
-              Local: <span className="enfase">{local}</span>
-            </p>
-            <p className="titulo-vinculo">
-              E-mail: <span className="enfase">{email}</span>
-            </p>
-            <div className="informacoes-vinculo-completo">
-              <p className="titulo-vinculo">
-                Nome da Mãe: <span className="enfase">{nomeMae}</span>
-              </p>
-              <p className="titulo-vinculo">
-                Nome do Pai: <span className="enfase">{nomePai}</span>
-              </p>
-            </div>
-            <p className="titulo-vinculo">
-              CNS: <span className="enfase">{cns}</span>
-            </p>
-            <p className="titulo-vinculo">
-              Função: <span className="enfase">{funcao}</span>
-            </p>
-            <div className="informacoes-vinculo-completo inputs-vinculo-completo">
-              <div>
-                <label
-                  htmlFor="operador"
-                  className="titulo-vinculo label-vinculo-completo"
-                >
-                  Operador:
-                </label>
-                <input
-                  type="number"
-                  name="operador"
-                  id="operador"
-                  placeholder="Código de Operador"
-                  onChange={(e) => setOperador(e.target.value)}
-                />
-              </div>
-              <div>
-                <label htmlFor="profissional" className="titulo-vinculo">
-                  Profissional:
-                </label>
-                <input
-                  type="number"
-                  name="profissional"
-                  id="profissional"
-                  placeholder="Código de Profissional"
-                  onChange={(e) => setProfissional(e.target.value)}
-                />
-              </div>
-            </div>
-            <div id="botoes">
-              <button type="button" onClick={toggleModal}>
-                Cancelar
-              </button>
-              <button type="button" onClick={handleVinculoPatch}>
-                Adicionar
-              </button>
-            </div>
-          </div>
-        </section>
-      )}
+      {modalIsVisible && selectModal()}
     </>
   );
 }
@@ -184,6 +245,6 @@ Vinculo.propTypes = {
   nomePai: PropTypes.string.isRequired,
   cns: PropTypes.string.isRequired,
   funcao: PropTypes.string.isRequired,
-  // operadorCodigo: PropTypes.string.isRequired,
-  // profissionalCodigo: PropTypes.string.isRequired,
+  operadorCodigo: PropTypes.string.isRequired,
+  profissionalCodigo: PropTypes.string.isRequired,
 };

@@ -68,7 +68,7 @@
   position: absolute;
   top: 50%;
 
-  width: 99.2vw;
+  width: 100vw;
   height: 100vh;
   background-color: var(--escuro);
 
@@ -81,9 +81,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  overflow: hidden;
 }
 
-#vinculo-completo-modal {
+#vinculo-modal {
   background-color: white;
 
   width: 50vw;
@@ -91,21 +93,21 @@
   border-radius: 25px;
 }
 
-#titulo-modal-vinculo-completo {
+#titulo-modal {
   text-align: center;
   color: var(--cor-destaque);
 
   font-size: 24pt;
 }
 
-#vinculo-completo-modal hr {
+#vinculo-modal hr {
   width: 20%;
   border: 3px solid var(--cor-botao);
   border-radius: 5px;
   margin: 0 auto;
 }
 
-#vinculo-completo-modal p, label {
+#vinculo-modal p, label {
   font-size: 20pt;
   padding: 0.65%;
 }
@@ -114,7 +116,7 @@
   color: var(--cor-titulo-vinculos);
 }
 
-.informacoes-vinculo-completo {
+.informacoes-vinculo {
   display: flex;
 
   justify-content: space-between;
