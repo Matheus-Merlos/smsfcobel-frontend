@@ -6,7 +6,7 @@ export default (reducers) => {
     {
       key: 'SMSFCOBEL',
       storage,
-      whitelist: ['reducer'],
+      whitelist: ['reducer', 'menuChangeReducer'],
     },
     reducers
   );

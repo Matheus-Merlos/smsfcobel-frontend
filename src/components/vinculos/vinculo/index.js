@@ -86,7 +86,7 @@ export default function Vinculo({
   }
 
   function selectModal() {
-    return operador !== '' ? (
+    return operadorCodigo === null ? (
       <section id="escurecimento">
         <div id="vinculo-modal">
           <h1 id="titulo-modal">Adicionar Vínculo</h1>
@@ -229,9 +229,15 @@ export default function Vinculo({
   );
 }
 
+Vinculo.defaultProps = {
+  operadorCodigo: '',
+  profissionalCodigo: '',
+};
+
 Vinculo.propTypes = {
   profissionalID: PropTypes.string.isRequired,
-  vinculoID: PropTypes.string.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  vinculoID: PropTypes.any.isRequired,
   nome: PropTypes.string.isRequired,
   local: PropTypes.string.isRequired,
   criacao: PropTypes.string.isRequired,
@@ -245,6 +251,6 @@ Vinculo.propTypes = {
   nomePai: PropTypes.string.isRequired,
   cns: PropTypes.string.isRequired,
   funcao: PropTypes.string.isRequired,
-  operadorCodigo: PropTypes.string.isRequired,
-  profissionalCodigo: PropTypes.string.isRequired,
+  operadorCodigo: PropTypes.string,
+  profissionalCodigo: PropTypes.string,
 };

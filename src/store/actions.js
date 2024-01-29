@@ -19,3 +19,10 @@ export function loginSuccess(payload) {
     payload,
   };
 }
+
+export function changeMenu(payload) {
+  return {
+    type: actionTypes.MENU_CHANGE,
+    payload,
+  };
+}

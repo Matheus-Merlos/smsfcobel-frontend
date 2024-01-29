@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 
 import './Style.css';
+import { useSelector } from 'react-redux';
 import menuIcon from './img/grid_icon.png';
 import userIcon from './img/user_icon_white.png';
 
@@ -13,6 +14,10 @@ export default function Funcionarios() {
   function changeVisibility() {
     setIsVisible(!isVisible);
   }
+
+  const currentMenu = useSelector(
+    (state) => state.menuChangeReducer.currentMenu
+  );
 
   return (
     <>
@@ -29,7 +34,7 @@ export default function Funcionarios() {
               }
             }}
           />
-          <h1>Vínculos CNES/IDS</h1>
+          <h1>{currentMenu}</h1>
         </div>
         <div className="cabecalio-part" id="perfil">
           <img src={userIcon} alt="Foto de perfil" />

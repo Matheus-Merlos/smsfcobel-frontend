@@ -4,6 +4,7 @@ import './Style.css';
 import IDSIcon from './img/simbolo-ids.png';
 import CNESIcon from './img/simbolo-cnes.png';
 import RHIcon from './img/simbolo-rh.png';
+import ListIcon from './img/simbolo-lista.jpg';
 
 import history from '../../../services/history';
 
@@ -18,6 +19,10 @@ export default function vinculosSidebar() {
   }
   function redirectToDesvincular() {
     history.push('/vinculos/vinculos-rh/');
+    history.go();
+  }
+  function redirectToList() {
+    history.push('/vinculos/listagem/');
     history.go();
   }
 
@@ -42,6 +47,11 @@ export default function vinculosSidebar() {
       <div onClick={redirectToDesvincular} onKeyUp={handleKeyPress}>
         <img src={RHIcon} alt="Desvincular Ícone" />
         <h1>Vinculos RH</h1>
+      </div>
+      <hr />
+      <div onClick={redirectToList} onKeyUp={handleKeyPress}>
+        <img src={ListIcon} alt="Lista Ícone" />
+        <h1>Listagem</h1>
       </div>
     </aside>
   );

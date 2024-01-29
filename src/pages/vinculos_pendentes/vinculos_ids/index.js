@@ -8,6 +8,7 @@ import Header from '../../../components/Header';
 import Sidebar from '../../../components/vinculos/sidebar_vinculos_pendentes';
 
 import Vinculo from '../../../components/vinculos/vinculo';
+import history from '../../../services/history';
 
 export default function VinculosPendentes() {
   const [vinculosPendentes, setVinculosPendentes] = useState([]);
@@ -17,10 +18,17 @@ export default function VinculosPendentes() {
 
   useEffect(() => {
     async function fetchVinculosPendentes() {
-      const response = await axios.get('vinculos/api/vinculos-pendentes/');
-      const responseData = response.data;
+      try {
+        const response = await axios.get('vinculos/api/vinculos-pendentes/');
+        const responseData = response.data;
 
-      setVinculosPendentes(responseData);
+        setVinculosPendentes(responseData);
+      } catch (error) {
+        if (error.response.status === 401) {
+          history.push('/login/');
+          history.go();
+        }
+      }
     }
 
     // Configura o intervalo apenas uma vez
@@ -39,6 +47,7 @@ export default function VinculosPendentes() {
         <div id="direita-vinculos">
           {vinculosPendentes.map((vinculo) => (
             <Vinculo
+              key={vinculo.id}
               profissionalID={vinculo.profissional_id}
               vinculoID={vinculo.id}
               nome={vinculo.nome}

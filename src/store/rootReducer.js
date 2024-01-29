@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
 
-import baseReducer from './reducers';
+import baseReducer, { menuChangeReducer } from './reducers';
 
 export default combineReducers({
   reducer: baseReducer,
+  menuChangeReducer,
 });
