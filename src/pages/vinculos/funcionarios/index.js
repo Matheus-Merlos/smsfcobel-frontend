@@ -24,6 +24,7 @@ export default function Funcionarios() {
   const [cpf, setCPF] = useState('');
   const [cns, setCNS] = useState('');
   const [email, setEmail] = useState('');
+  const [crm, setCRM] = useState('');
   const [dataNascimento, setDataNascimento] = useState('');
   const [rg, setRG] = useState('');
   const [dataEmissaoRG, setDataEmissaoRG] = useState('');
@@ -38,6 +39,7 @@ export default function Funcionarios() {
       setCNS,
       setRG,
       setEmail,
+      setCRM,
       setDataNascimento,
       setDataEmissaoRG,
       setNomeMae,
@@ -120,6 +122,7 @@ export default function Funcionarios() {
       emissao_rg: formatDate(dataEmissaoRG),
       cns,
       email: email.toLowerCase(),
+      crm,
       data_nascimento: formatDate(dataNascimento),
       nome_mae: nomeMae.toUpperCase(),
       nome_pai: nomePai.toUpperCase(),
@@ -226,14 +229,24 @@ export default function Funcionarios() {
                   onChange={(e) => setCNS(e.target.value)}
                 />
               </div>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                placeholder="E-mail"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
+              <div className="formulario-parte dois-inputs">
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="E-mail"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                <input
+                  type="number"
+                  name="crm"
+                  id="crm"
+                  placeholder="CRM"
+                  value={crm}
+                  onChange={(e) => setCRM(e.target.value)}
+                />
+              </div>
               <div className="formulario-parte" id="tres-inputs">
                 <input
                   type="text"

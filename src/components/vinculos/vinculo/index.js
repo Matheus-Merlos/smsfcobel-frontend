@@ -6,6 +6,8 @@ import './Style.css';
 import { toast } from 'react-toastify';
 import axios from '../../../services/axios';
 
+import { formatCPF, formatCNS } from '../../../services/utils';
+
 export default function Vinculo({
   profissionalID,
   vinculoID,
@@ -22,6 +24,8 @@ export default function Vinculo({
   nomePai,
   cns,
   funcao,
+  sexo,
+  dataNascimento,
   operadorCodigo,
   profissionalCodigo,
 }) {
@@ -74,26 +78,12 @@ export default function Vinculo({
     }
   }
 
-  function formatCPF(cpfToFormat) {
-    const regex = /^(\d{3})(\d{3})(\d{3})(\d{2})$/;
-    return cpfToFormat.replace(regex, '$1.$2.$3-$4');
-  }
-
-  // Formatar Cartão SUS
-  function formatCNS(cartaoSUS) {
-    const regex = /^(\d{3})(\d{4})(\d{4})(\d{4})$/;
-    return cartaoSUS.replace(regex, '$1.$2.$3.$4');
-  }
-
   function selectModal() {
     return operadorCodigo === null ? (
       <section id="escurecimento">
         <div id="vinculo-modal">
           <h1 id="titulo-modal">Adicionar Vínculo</h1>
           <hr />
-          <p className="titulo-vinculo">
-            Nome: <span className="enfase">{nome}</span>
-          </p>
           <div className="informacoes-vinculo">
             <p className="titulo-vinculo">
               CPF: <span className="enfase">{formatCPF(cpf)}</span>
@@ -105,9 +95,15 @@ export default function Vinculo({
               Expedição:<span className="enfase">{expedicaoRG}</span>
             </p>
           </div>
-          <p className="titulo-vinculo">
-            Local: <span className="enfase">{local}</span>
-          </p>
+          <div className="informacoes-vinculo">
+            <p className="titulo-vinculo">
+              Local: <span className="enfase">{local}</span>
+            </p>
+            <p className="titulo-vinculo">
+              Data de Nascimento:{' '}
+              <span className="enfase">{dataNascimento}</span>
+            </p>
+          </div>
           <p className="titulo-vinculo">
             E-mail: <span className="enfase">{email}</span>
           </p>
@@ -122,9 +118,14 @@ export default function Vinculo({
           <p className="titulo-vinculo">
             CNS: <span className="enfase">{formatCNS(cns)}</span>
           </p>
-          <p className="titulo-vinculo">
-            Função: <span className="enfase">{funcao}</span>
-          </p>
+          <div className="informacoes-vinculo">
+            <p className="titulo-vinculo">
+              Função: <span className="enfase">{funcao}</span>
+            </p>
+            <p className="titulo-vinculo">
+              Sexo: <span className="enfase">{sexo}</span>
+            </p>
+          </div>
           <div className="informacoes-vinculo inputs-vinculo-completo">
             <div>
               <label
@@ -251,6 +252,8 @@ Vinculo.propTypes = {
   nomePai: PropTypes.string.isRequired,
   cns: PropTypes.string.isRequired,
   funcao: PropTypes.string.isRequired,
+  sexo: PropTypes.string.isRequired,
+  dataNascimento: PropTypes.string.isRequired,
   operadorCodigo: PropTypes.string,
   profissionalCodigo: PropTypes.string,
 };

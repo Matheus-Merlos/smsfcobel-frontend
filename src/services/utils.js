@@ -52,4 +52,15 @@ function formatDate(date) {
   return `${dateAsString[2]}-${dateAsString[1]}-${dateAsString[0]}`;
 }
 
-export { isValidDate, handleDateInputChange, formatDate };
+function formatCPF(cpfToFormat) {
+  const regex = /^(\d{3})(\d{3})(\d{3})(\d{2})$/;
+  return cpfToFormat.replace(regex, '$1.$2.$3-$4');
+}
+
+// Formatar Cartão SUS
+function formatCNS(cartaoSUS) {
+  const regex = /^(\d{3})(\d{4})(\d{4})(\d{4})$/;
+  return cartaoSUS.replace(regex, '$1.$2.$3.$4');
+}
+
+export { isValidDate, handleDateInputChange, formatDate, formatCPF, formatCNS };

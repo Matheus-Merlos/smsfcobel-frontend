@@ -1,0 +1,19 @@
+#direita-vinculos {
+  width: 83.2%;
+  height:initial;
+  float: right;
+
+  padding: 1.25%;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2%;
+
+  overflow: scroll;
+
+  border: 1px solid black;
+}
+
+#direita * {
+  margin-left: 0%;
+}

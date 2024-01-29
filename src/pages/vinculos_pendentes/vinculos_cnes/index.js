@@ -10,7 +10,7 @@ import Sidebar from '../../../components/vinculos/sidebar_vinculos_pendentes';
 import Vinculo from '../../../components/vinculos/vinculo';
 import history from '../../../services/history';
 
-export default function VinculosPendentes() {
+export default function VinculosPendentesCNES() {
   const [vinculosPendentes, setVinculosPendentes] = useState([]);
 
   const accessToken = useSelector((state) => state.reducer.accessToken);
@@ -19,7 +19,7 @@ export default function VinculosPendentes() {
   useEffect(() => {
     async function fetchVinculosPendentes() {
       try {
-        const response = await axios.get('vinculos/api/vinculos-pendentes/');
+        const response = await axios.get('vinculos/api/vinculos-cnes/');
         const responseData = response.data;
 
         setVinculosPendentes(responseData);
