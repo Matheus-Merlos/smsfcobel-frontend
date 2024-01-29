@@ -52,6 +52,8 @@ export default function ListagemVinculos() {
                 <th>Início das Atividades</th>
                 <th>CRM</th>
                 <th>Carga Horária</th>
+                <th>Operador</th>
+                <th>Profissional</th>
                 <th>Status CNES</th>
                 <th>Status IDS</th>
                 <th>Status RH</th>
@@ -76,6 +78,8 @@ export default function ListagemVinculos() {
                   <td>{vinculo.data_entrada}</td>
                   <td>{vinculo.crm}</td>
                   <td>{vinculo.carga_horaria}</td>
+                  <td>{vinculo.operador}</td>
+                  <td>{vinculo.profissional}</td>
                   <td>{vinculo.status_cnes}</td>
                   <td>{vinculo.status_ids}</td>
                   <td>{vinculo.status_rh}</td>

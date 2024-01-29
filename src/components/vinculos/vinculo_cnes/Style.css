@@ -1,0 +1,171 @@
+:root {
+  --escuro: rgba(0,0,0,0.5);
+  --cor-vinculo-background: #DCEFFF;
+  --cor-enfase: #342F2F;
+  --cor-destaque: #16193B;
+  --cor-tipo: #35478C;
+  --cor-titulo-vinculos: #35478C;
+  --cor-botao: #5598EA;
+}
+
+#vinculo {
+  position: relative;
+  background-color: var(--cor-vinculo-background);
+  width: 90%;
+  padding: 2%;
+  border-radius: 30px;
+  box-shadow: 2px 2px 5px grey;
+}
+
+#tipo-vinculo {
+  color: var(--cor-tipo);
+  display: block;
+}
+
+#vinculo p {
+  font-size: 24pt;
+  margin: 0.25%;
+}
+
+.enfase {
+  color: var(--cor-enfase);
+}
+
+.destaque {
+  color: var(--cor-destaque);
+}
+
+#datas {
+  display: flex;
+  justify-content: space-between;
+}
+
+#button-container {
+  text-align: right;
+}
+
+#botao-adicionar {
+  position: absolute;
+  background-color: var(--cor-botao);
+  text-align: center;
+  color: white;
+  padding: 1.25%;
+  font-size: 24pt;
+  border-radius: 80px;
+  width: 15%;
+  border: none;
+
+  right: -5%;
+  top: 45%;
+
+  transform: translate(-50%, -50%);
+}
+
+#botao-adicionar:hover {
+  cursor: pointer;
+}
+
+#escurecimento {
+  position: absolute;
+  top: 50%;
+
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--escuro);
+
+  z-index: 2;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  overflow: hidden;
+}
+
+#vinculo-modal {
+  background-color: white;
+
+  width: 50vw;
+  padding: 2%;
+  border-radius: 25px;
+}
+
+#titulo-modal {
+  text-align: center;
+  color: var(--cor-destaque);
+
+  font-size: 24pt;
+}
+
+#vinculo-modal hr {
+  width: 20%;
+  border: 3px solid var(--cor-botao);
+  border-radius: 5px;
+  margin: 0 auto;
+}
+
+#vinculo-modal p, label {
+  font-size: 20pt;
+  padding: 0.65%;
+}
+
+.titulo-vinculo {
+  color: var(--cor-titulo-vinculos);
+}
+
+.informacoes-vinculo {
+  display: flex;
+
+  justify-content: space-between;
+}
+
+.enfase {
+  color: var(--cor-enfase);
+
+  white-space: nowrap;
+}
+
+#botoes {
+  display: flex;
+  justify-content: space-around;
+}
+
+#botoes button {
+  color: white;
+  padding: 1.25%;
+  font-size: 24pt;
+  border-radius: 80px;
+  width: 25%;
+  border: none;
+
+  margin-top: 1%;
+}
+
+#botoes button:hover {
+  cursor: pointer;
+}
+
+#botoes button:nth-child(1) {
+  background-color: var(--cor-destaque);
+}
+
+#botoes button:nth-child(2) {
+  background-color: var(--cor-botao);
+}
+
+@media screen and (min-width: 992px) and (max-width: 1280px) {
+  #vinculo p,
+  #botao-adicionar,
+  #titulo-modal,
+  #botoes button {
+    font-size: 18pt;
+  }
+  #vinculo-modal p, label {
+    font-size: 16pt;
+  }
+}
+

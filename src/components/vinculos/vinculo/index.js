@@ -84,6 +84,9 @@ export default function Vinculo({
         <div id="vinculo-modal">
           <h1 id="titulo-modal">Adicionar Vínculo</h1>
           <hr />
+          <p className="titulo-vinculo">
+            Nome: <span className="enfase">{nome}</span>
+          </p>
           <div className="informacoes-vinculo">
             <p className="titulo-vinculo">
               CPF: <span className="enfase">{formatCPF(cpf)}</span>

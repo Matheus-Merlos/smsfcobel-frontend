@@ -7,7 +7,7 @@ import axios from '../../../services/axios';
 import Header from '../../../components/Header';
 import Sidebar from '../../../components/vinculos/sidebar_vinculos_pendentes';
 
-import Vinculo from '../../../components/vinculos/vinculo';
+import Vinculo from '../../../components/vinculos/vinculo_cnes';
 import history from '../../../services/history';
 
 export default function VinculosPendentesCNES() {
@@ -48,7 +48,6 @@ export default function VinculosPendentesCNES() {
           {vinculosPendentes.map((vinculo) => (
             <Vinculo
               key={vinculo.id}
-              profissionalID={vinculo.profissional_id}
               vinculoID={vinculo.id}
               nome={vinculo.nome}
               local={vinculo.local}
@@ -62,11 +61,10 @@ export default function VinculosPendentesCNES() {
               nomeMae={vinculo.nome_mae}
               nomePai={vinculo.nome_pai}
               cns={vinculo.cns}
+              crm={vinculo.crm}
               funcao={vinculo.funcao}
               sexo={vinculo.sexo}
               dataNascimento={vinculo.data_nascimento}
-              operadorCodigo={vinculo.operador}
-              profissionalCodigo={vinculo.profissional}
             />
           ))}
         </div>
