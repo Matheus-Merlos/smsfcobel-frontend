@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import './Style.css';
 
+import { useSelector } from 'react-redux';
 import axios from '../../../services/axios';
 import history from '../../../services/history';
 import Header from '../../../components/Header';
@@ -11,6 +12,9 @@ import { formatCNS, formatCPF } from '../../../services/utils';
 
 export default function ListagemVinculos() {
   const [allVinculos, setAllVinculos] = useState([]);
+
+  const accessToken = useSelector((state) => state.reducer.accessToken);
+  axios.defaults.headers.Authorization = `Bearer ${accessToken}`;
 
   useEffect(() => {
     async function fetchAllVinculos() {

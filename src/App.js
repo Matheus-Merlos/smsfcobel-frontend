@@ -18,6 +18,7 @@ import PrivateRoute from './services/PrivateRoute';
 import store, { persistor } from './store';
 import ListagemVinculos from './pages/vinculos_pendentes/listagem';
 import VinculosPendentesCNES from './pages/vinculos_pendentes/vinculos_cnes';
+import Desvincular from './pages/vinculos/desvincular';
 
 function App() {
   return (
@@ -34,6 +35,10 @@ function App() {
             <Route
               path="/vinculos/vincular/"
               element={<PrivateRoute element={<Vincular />} />}
+            />
+            <Route
+              path="/vinculos/desvincular/"
+              element={<PrivateRoute element={<Desvincular />} />}
             />
             <Route
               path="/vinculos/vinculos-ids/"

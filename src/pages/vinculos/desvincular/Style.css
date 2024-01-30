@@ -1,0 +1,62 @@
+
+main {
+  display: flex;
+  justify-content: space-between;
+}
+
+#direita {
+  width: 83.2%;
+  height: 89.3vh;
+  float: right;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: 1px solid black;
+}
+
+#titulo {
+  font-size: 32pt;
+}
+
+#descricao {
+  font-size: 20pt;
+  margin-bottom: 20px;
+  font-weight: normal;
+}
+
+#aviso {
+  margin-top: 20px;
+  font-size: 18pt;
+}
+#formulario-desvincular {
+  width: 85%;
+  height: 85%;
+}
+
+#local-desvincular, #funcionario-desvincular {
+  width: 100%;
+}
+
+#criar-vinculo {
+  margin-top: 30px;
+  border: none;
+  background-color: var(--cor-botao);
+  color: white;
+  font-size: 32pt;
+
+  display: inline-block;
+
+  border-radius: 50px;
+  width: 20%;
+  padding: 10px;
+}
+
+#criar-vinculo:hover {
+  cursor: pointer;
+}
+
+select:focus {
+  outline: none;
+}
