@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 
 import './Style.css';
 
-import Sidebar from '../../../components/vinculos/sidebar';
+import { vinculosSidebar as Sidebar } from '../../../components/vinculos/sidebar';
 import Header from '../../../components/Header';
 
 import axios from '../../../services/axios';

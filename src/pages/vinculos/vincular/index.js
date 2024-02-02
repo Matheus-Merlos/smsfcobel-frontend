@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 import axios from '../../../services/axios';
 
 import Header from '../../../components/Header';
-import Sidebar from '../../../components/vinculos/sidebar';
+import { vinculosSidebar as Sidebar } from '../../../components/vinculos/sidebar';
 
 import history from '../../../services/history';
 

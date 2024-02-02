@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import axios from '../../../services/axios';
 import history from '../../../services/history';
 import Header from '../../../components/Header';
-import Sidebar from '../../../components/vinculos/sidebar_vinculos_pendentes';
+import { vinculosPendentesSidebar as Sidebar } from '../../../components/vinculos/sidebar';
 
 import { formatCNS, formatCPF } from '../../../services/utils';
 

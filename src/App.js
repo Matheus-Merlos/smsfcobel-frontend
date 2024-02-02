@@ -20,6 +20,8 @@ import ListagemVinculos from './pages/vinculos_pendentes/listagem';
 import VinculosPendentesCNES from './pages/vinculos_pendentes/vinculos_cnes';
 import Desvincular from './pages/vinculos/desvincular';
 
+import CriarOperador from './pages/operadores/criar_operador';
+
 function App() {
   return (
     <Provider store={store}>
@@ -51,6 +53,10 @@ function App() {
             <Route
               path="/vinculos/listagem/"
               element={<PrivateRoute element={<ListagemVinculos />} />}
+            />
+            <Route
+              path="/operadores/adicionar/"
+              element={<PrivateRoute element={<CriarOperador />} />}
             />
           </Routes>
         </BrowserRouter>

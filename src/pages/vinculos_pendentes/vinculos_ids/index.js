@@ -5,7 +5,7 @@ import './Style.css';
 
 import axios from '../../../services/axios';
 import Header from '../../../components/Header';
-import Sidebar from '../../../components/vinculos/sidebar_vinculos_pendentes';
+import { vinculosPendentesSidebar as Sidebar } from '../../../components/vinculos/sidebar';
 
 import Vinculo from '../../../components/vinculos/vinculo';
 import history from '../../../services/history';

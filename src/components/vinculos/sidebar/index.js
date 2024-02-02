@@ -5,44 +5,80 @@ import funcionarioIcon from './img/funcionario_icon.png';
 import vincularIcon from './img/vinculo_icon.png';
 import desvincularIcon from './img/unlink_icon.png';
 
-import history from '../../../services/history';
+import IDSIcon from './img/simbolo-ids.png';
+import CNESIcon from './img/simbolo-cnes.png';
+import RHIcon from './img/simbolo-rh.png';
+import ListIcon from './img/simbolo-lista.jpg';
 
-export default function vinculosSidebar() {
-  function redirectToFuncionarios() {
-    history.push('/vinculos/funcionarios/');
-    history.go();
-  }
-  function redirectToVinculos() {
-    history.push('/vinculos/vincular/');
-    history.go();
-  }
-  function redirectToDesvincular() {
-    history.push('/vinculos/desvincular/');
-    history.go();
-  }
+import AddOperador from './img/add-operador.svg';
+import OperadorIcon from './img/operador-icon.png';
 
-  function handleKeyPress(event) {
-    if (event.key === 'v') {
-      redirectToVinculos();
-    }
-  }
+import Item from './item';
 
+function vinculosSidebar() {
   return (
     <aside id="sidebar">
-      <div onClick={redirectToFuncionarios} onKeyUp={handleKeyPress}>
-        <img src={funcionarioIcon} alt="Funcionário Ícone" />
-        <h1>Funcionários</h1>
-      </div>
-      <hr />
-      <div onClick={redirectToVinculos} onKeyUp={handleKeyPress}>
-        <img src={vincularIcon} alt="Vincular Ícone" />
-        <h1>Vincular</h1>
-      </div>
-      <hr />
-      <div onClick={redirectToDesvincular} onKeyUp={handleKeyPress}>
-        <img src={desvincularIcon} alt="Desvincular Ícone" />
-        <h1>Desvincular</h1>
-      </div>
+      <Item
+        linkToRedirect="/vinculos/funcionarios/"
+        icon={funcionarioIcon}
+        name="Funcionários"
+      />
+      <Item
+        linkToRedirect="/vinculos/vincular/"
+        icon={vincularIcon}
+        name="Vincular"
+      />
+      <Item
+        linkToRedirect="/vinculos/desvincular/"
+        icon={desvincularIcon}
+        name="Vincular"
+      />
     </aside>
   );
 }
+
+function vinculosPendentesSidebar() {
+  return (
+    <aside id="sidebar">
+      <Item
+        linkToRedirect="/vinculos/vinculos-ids/"
+        icon={IDSIcon}
+        name="Vínculos IDS"
+      />
+      <Item
+        linkToRedirect="/vinculos/vinculos-cnes/"
+        icon={CNESIcon}
+        name="Vínculos CNES"
+      />
+      <Item
+        linkToRedirect="/vinculos/vinculos-rh/"
+        icon={RHIcon}
+        name="Vínculos RH"
+      />
+      <Item
+        linkToRedirect="/vinculos/listagem/"
+        icon={ListIcon}
+        name="Listagem"
+      />
+    </aside>
+  );
+}
+
+function operadoresSidebar() {
+  return (
+    <aside id="sidebar">
+      <Item
+        linkToRedirect="/operador/adicionar/"
+        icon={AddOperador}
+        name="Adicionar"
+      />
+      <Item
+        linkToRedirect="/operador/operadores/"
+        icon={OperadorIcon}
+        name="Operadores"
+      />
+    </aside>
+  );
+}
+
+export { vinculosSidebar, vinculosPendentesSidebar, operadoresSidebar };

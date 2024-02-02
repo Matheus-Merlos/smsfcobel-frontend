@@ -2,60 +2,37 @@ import React from 'react';
 
 import './Style.css';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import vinculoIcon from './img/vinculo_icon.png';
 import vinculoPendenteIcon from './img/console.svg';
+import operadorIcon from './img/operador-icon.png';
 
-import * as actions from '../../store/actions';
-
-import history from '../../services/history';
+import Icon from './icon';
 
 export default function Menu() {
-  const dispatch = useDispatch();
-
-  function redirect(link) {
-    history.push(link);
-    history.go();
-  }
-
   const permissions = useSelector((state) => state.reducer.permissions);
 
   const menus = {
     VINCULOS: (
-      <div
-        role="button"
-        tabIndex="0"
-        onClick={() => {
-          redirect('/vinculos/funcionarios/');
-          dispatch(actions.changeMenu({ newMenu: 'Vínculos CNES/IDS' }));
-        }}
-        onKeyDown={(e) => {
-          if (e.key === 'v') {
-            redirect('/vinculos/funcionarios/');
-          }
-        }}
-      >
-        <img src={vinculoIcon} alt="teste" />
-        <p>Vínculos CNES/IDS</p>
-      </div>
+      <Icon
+        itemIcon={vinculoIcon}
+        name="Vínculos CNES/IDS"
+        link="/vinculos/funcionarios/"
+      />
     ),
     VINCULOS_PENDENTES: (
-      <div
-        role="button"
-        tabIndex="0"
-        onClick={() => {
-          redirect('/vinculos/vinculos-ids/');
-          dispatch(actions.changeMenu({ newMenu: 'Vínculos Pendentes' }));
-        }}
-        onKeyDown={(e) => {
-          if (e.key === 'v') {
-            redirect('/vinculos/vinculos-ids/');
-          }
-        }}
-      >
-        <img src={vinculoPendenteIcon} alt="teste" />
-        <p>Vínculos Pendentes</p>
-      </div>
+      <Icon
+        itemIcon={vinculoPendenteIcon}
+        name="Vínculos Pendentes"
+        link="/vinculos/vinculos-ids/"
+      />
+    ),
+    OPERADORES: (
+      <Icon
+        itemIcon={operadorIcon}
+        name="Operadores"
+        link="/operadores/adicionar/"
+      />
     ),
   };
 

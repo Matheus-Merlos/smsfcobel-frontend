@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import Header from '../../../components/Header';
-import Sidebar from '../../../components/vinculos/sidebar';
+import { vinculosSidebar as Sidebar } from '../../../components/vinculos/sidebar';
 
 import axios from '../../../services/axios';
 
