@@ -25,6 +25,7 @@ export default function Desvincular() {
     async function fetchFuncionarios() {
       try {
         const response = await axios.get('/vinculos/api/funcionarios/');
+
         setFuncionariosDesvincular(response.data);
       } catch (error) {
         history.push('/login/');
@@ -68,7 +69,7 @@ export default function Desvincular() {
     try {
       await axios.post('/vinculos/api/', vinculo);
 
-      toast.success('Funcionário vinculado com sucesso!');
+      toast.success('Funcionário desvinculado com sucesso!');
     } catch (error) {
       toast.error(`Erro interno do sistema: ${error}`);
     }

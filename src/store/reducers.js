@@ -5,6 +5,9 @@ const initialState = {
   isLoggedIn: false,
   accessToken: '',
   refreshToken: '',
+  userName: '',
+  userCPF: '',
+  permissions: [],
 };
 
 const initialMenuState = {
@@ -18,6 +21,9 @@ export default function reducer(state = initialState, action) {
       newState.isLoggedIn = true;
       newState.accessToken = action.payload.access;
       newState.refreshToken = action.payload.refresh;
+      newState.userName = action.payload.user;
+      newState.userCPF = action.payload.cpf;
+      newState.permissions = action.payload.permissions;
       return newState;
     }
 

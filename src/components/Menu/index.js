@@ -2,7 +2,7 @@ import React from 'react';
 
 import './Style.css';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import vinculoIcon from './img/vinculo_icon.png';
 import vinculoPendenteIcon from './img/console.svg';
 
@@ -18,8 +18,10 @@ export default function Menu() {
     history.go();
   }
 
-  return (
-    <div className="menu-principal">
+  const permissions = useSelector((state) => state.reducer.permissions);
+
+  const menus = {
+    VINCULOS: (
       <div
         role="button"
         tabIndex="0"
@@ -36,6 +38,8 @@ export default function Menu() {
         <img src={vinculoIcon} alt="teste" />
         <p>Vínculos CNES/IDS</p>
       </div>
+    ),
+    VINCULOS_PENDENTES: (
       <div
         role="button"
         tabIndex="0"
@@ -52,6 +56,14 @@ export default function Menu() {
         <img src={vinculoPendenteIcon} alt="teste" />
         <p>Vínculos Pendentes</p>
       </div>
+    ),
+  };
+
+  return (
+    <div className="menu-principal">
+      {Object.keys(menus).map(
+        (menu) => permissions.includes(menu) && menus[menu]
+      )}
     </div>
   );
 }

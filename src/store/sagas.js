@@ -13,7 +13,7 @@ function* loginRequest({ payload }) {
 
     history.push('/vinculos/funcionarios/');
     history.go();
-  } catch {
+  } catch (error) {
     yield put(actions.loginFailure());
   }
 }

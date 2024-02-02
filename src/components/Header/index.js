@@ -18,6 +18,7 @@ export default function Funcionarios() {
   const currentMenu = useSelector(
     (state) => state.menuChangeReducer.currentMenu
   );
+  const userName = useSelector((state) => state.reducer.userName);
 
   return (
     <>
@@ -38,7 +39,9 @@ export default function Funcionarios() {
         </div>
         <div className="cabecalio-part" id="perfil">
           <img src={userIcon} alt="Foto de perfil" />
-          <h1>Matheus Au...</h1>
+          <h1>
+            {userName.length >= 15 ? `${userName.slice(0, 15)}...` : userName}
+          </h1>
         </div>
       </header>
       <div className={`modal ${isVisible ? 'fade-in' : ''}`}>
