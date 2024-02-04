@@ -240,8 +240,7 @@ Vinculo.defaultProps = {
 
 Vinculo.propTypes = {
   profissionalID: PropTypes.string.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  vinculoID: PropTypes.any.isRequired,
+  vinculoID: PropTypes.node.isRequired,
   nome: PropTypes.string.isRequired,
   local: PropTypes.string.isRequired,
   criacao: PropTypes.string.isRequired,

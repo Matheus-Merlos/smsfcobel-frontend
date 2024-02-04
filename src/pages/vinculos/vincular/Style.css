@@ -3,58 +3,10 @@
   --cor-botao: #290b7a;
 }
 
-main {
-  display: flex;
-  justify-content: space-between;
-}
-
-#direita {
-  width: 83.2%;
-  height: 89.3vh;
-  float: right;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  border: 1px solid black;
-}
-
-#titulo {
-  font-size: 32pt;
-}
-
-#descricao {
-  font-size: 20pt;
-  margin-bottom: 20px;
-  font-weight: normal;
-}
-
-#aviso {
-  margin-top: 20px;
-  font-size: 18pt;
-}
-
-#formulario-vinculos {
-  width: 85%;
-  height: 85%;
-}
-
 #preenchimento {
   margin-top: 10px;
 
   text-align: center;
-}
-
-#formulario-vinculos input, select {
-  border: none;
-  border-bottom: 2px solid var(--border-color);
-  padding: 10px;
-  background-color: white;
-
-  font-size: 18pt;
-
-  margin: 2.5% 0 1% 0;
 }
 
 #funcionario {
@@ -90,4 +42,15 @@ main {
 
 select:focus {
   outline: none;
+}
+
+@media screen and (min-width: 992px) and (max-width: 1280px) {
+  #criar-vinculo {
+    margin-top: 15px;
+    font-size: 26pt;
+
+    border-radius: 40px;
+    width: 20%;
+    padding: 5px;
+  }
 }

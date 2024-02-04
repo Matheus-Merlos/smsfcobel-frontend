@@ -1,0 +1,43 @@
+main {
+  display: flex;
+  justify-content: space-between;
+}
+
+#direita {
+  width: 83.2%;
+  height: 89.3vh;
+  float: right;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: 1px solid black;
+}
+
+#formulario {
+  width: 85%;
+  height: 85%;
+}
+
+#formulario input, select {
+  border: none;
+  border-bottom: 2px solid var(--border-color);
+  padding: 10px;
+  background-color: white;
+
+  font-size: 18pt;
+
+  margin: 1% 0 1% 0;
+}
+
+@media screen and (min-width: 992px) and (max-width: 1280px) {
+  #direita {
+    height: 89vh;
+  }
+  #formulario input, select {
+    padding: 10px;
+    font-size: 16pt;
+    margin: 0.5% 0 0.5% 0;
+  }
+}

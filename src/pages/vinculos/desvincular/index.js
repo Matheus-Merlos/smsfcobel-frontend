@@ -5,7 +5,8 @@ import { toast } from 'react-toastify';
 import './Style.css';
 
 import { vinculosSidebar as Sidebar } from '../../../components/vinculos/sidebar';
-import Header from '../../../components/Header';
+
+import Page from '../../../components/Page';
 
 import axios from '../../../services/axios';
 import history from '../../../services/history';
@@ -76,48 +77,41 @@ export default function Desvincular() {
   }
 
   return (
-    <>
-      <Header />
-      <main>
-        <Sidebar />
-        <section id="direita">
-          <div id="formulario-desvincular">
-            <h1 id="titulo">Desvincular</h1>
-            <p id="descricao">Remover vínculo existente</p>
-            <hr />
-            <p id="aviso">Insira os dados abaixo:</p>
-            <form method="post" id="preenchimento" onSubmit={handleDesvincular}>
-              <select
-                name="funcionario-desvincular"
-                id="funcionario-desvincular"
-                value={funcionarioParaDesvincular}
-                onChange={(e) => setFuncionarioParaDesvincular(e.target.value)}
-              >
-                {funcionariosDesvincular.map((funcionario) => (
-                  <option key={funcionario.id} value={funcionario.id}>
-                    {`${funcionario.id}-${funcionario.nome}`}
-                  </option>
-                ))}
-              </select>
-              <select
-                name="local-desvincular"
-                id="local-desvincular"
-                value={localParaDesvincular}
-                onChange={(e) => setLocalParaDesvincular(e.target.value)}
-              >
-                {locaisDesvincular.map((local) => (
-                  <option key={local.id} value={local.id}>
-                    {`${local.id}-${local.descricao}`}
-                  </option>
-                ))}
-              </select>
-              <button type="submit" id="criar-vinculo">
-                Desvincular
-              </button>
-            </form>
-          </div>
-        </section>
-      </main>
-    </>
+    <Page
+      pageName="Desvincular"
+      description="Remover vínculo existente"
+      Sidebar={Sidebar}
+      hasTitle
+    >
+      <form method="post" id="preenchimento" onSubmit={handleDesvincular}>
+        <select
+          name="funcionario-desvincular"
+          id="funcionario-desvincular"
+          value={funcionarioParaDesvincular}
+          onChange={(e) => setFuncionarioParaDesvincular(e.target.value)}
+        >
+          {funcionariosDesvincular.map((funcionario) => (
+            <option key={funcionario.id} value={funcionario.id}>
+              {`${funcionario.id}-${funcionario.nome}`}
+            </option>
+          ))}
+        </select>
+        <select
+          name="local-desvincular"
+          id="local-desvincular"
+          value={localParaDesvincular}
+          onChange={(e) => setLocalParaDesvincular(e.target.value)}
+        >
+          {locaisDesvincular.map((local) => (
+            <option key={local.id} value={local.id}>
+              {`${local.id}-${local.descricao}`}
+            </option>
+          ))}
+        </select>
+        <button type="submit" id="criar-vinculo">
+          Desvincular
+        </button>
+      </form>
+    </Page>
   );
 }

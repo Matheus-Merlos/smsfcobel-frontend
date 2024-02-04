@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import Header from '../../../components/Header';
 import { vinculosSidebar as Sidebar } from '../../../components/vinculos/sidebar';
+import Page from '../../../components/Page';
 
 import axios from '../../../services/axios';
 
@@ -173,134 +173,122 @@ export default function Funcionarios() {
   }, []);
 
   return (
-    <>
-      <Header />
-      <main>
-        <Sidebar />
-        <div id="direita">
-          <div id="formulario-funcionario">
-            <h1 id="titulo">Funcionário</h1>
-            <p id="descricao">Cadastrar novo funcionário</p>
-            <hr />
-            <p id="aviso">Insira os dados abaixo:</p>
-
-            <form
-              method="post"
-              id="preenchimento"
-              onSubmit={handleSubmitFuncionario}
-            >
-              <div className="formulario-parte nome-sexo">
-                <input
-                  type="text"
-                  name="nome"
-                  id="nome"
-                  placeholder="Nome Completo"
-                  value={nome}
-                  onChange={(e) => setNome(e.target.value)}
-                />
-                <select
-                  name="sexo"
-                  id="sexo"
-                  value={sexo}
-                  onChange={(e) => setSexo(e.target.value)}
-                >
-                  {genders.map((gender) => (
-                    <option key={gender.id} value={gender.id}>
-                      {`${gender.id}-${gender.descricao}`}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              <div className="formulario-parte dois-inputs">
-                <input
-                  type="number"
-                  name="cpf"
-                  id="cpf"
-                  placeholder="CPF"
-                  value={cpf}
-                  onChange={(e) => setCPF(e.target.value)}
-                />
-                <input
-                  type="number"
-                  name="cns"
-                  id="cns"
-                  placeholder="CNS"
-                  value={cns}
-                  onChange={(e) => setCNS(e.target.value)}
-                />
-              </div>
-              <div className="formulario-parte dois-inputs">
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  placeholder="E-mail"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-                <input
-                  type="number"
-                  name="crm"
-                  id="crm"
-                  placeholder="CRM"
-                  value={crm}
-                  onChange={(e) => setCRM(e.target.value)}
-                />
-              </div>
-              <div className="formulario-parte" id="tres-inputs">
-                <input
-                  type="text"
-                  name="data_nascimento"
-                  id="data_nascimento"
-                  placeholder="Data de Nascimento"
-                  maxLength="10"
-                  value={dataNascimento}
-                  onChange={(e) => handleDateInputChange(e, setDataNascimento)}
-                />
-                <input
-                  type="number"
-                  name="rg"
-                  id="rg"
-                  placeholder="RG"
-                  value={rg}
-                  onChange={(e) => setRG(e.target.value)}
-                />
-                <input
-                  type="text"
-                  name="emissao_rg"
-                  id="emissao_rg"
-                  placeholder="Data de Emissão do RG"
-                  maxLength="10"
-                  value={dataEmissaoRG}
-                  onChange={(e) => handleDateInputChange(e, setDataEmissaoRG)}
-                />
-              </div>
-              <div className="formulario-parte dois-inputs">
-                <input
-                  type="text"
-                  name="nome_mae"
-                  id="nome_mae"
-                  placeholder="Nome da mãe"
-                  value={nomeMae}
-                  onChange={(e) => setNomeMae(e.target.value)}
-                />
-                <input
-                  type="text"
-                  name="nome_pai"
-                  id="nome_pai"
-                  placeholder="Nome do Pai"
-                  value={nomePai}
-                  onChange={(e) => setNomePai(e.target.value)}
-                />
-              </div>
-
-              <button type="submit" id="criar-funcionario">
-                Criar
-              </button>
-            </form>
-          </div>
+    <Page
+      pageName="Funcionário"
+      description="Cadastrar novo funcionário"
+      Sidebar={Sidebar}
+      hasTitle
+    >
+      <form method="post" id="preenchimento" onSubmit={handleSubmitFuncionario}>
+        <div className="formulario-parte nome-sexo">
+          <input
+            type="text"
+            name="nome"
+            id="nome"
+            placeholder="Nome Completo"
+            value={nome}
+            onChange={(e) => setNome(e.target.value)}
+          />
+          <select
+            name="sexo"
+            id="sexo"
+            value={sexo}
+            onChange={(e) => setSexo(e.target.value)}
+          >
+            {genders.map((gender) => (
+              <option key={gender.id} value={gender.id}>
+                {`${gender.id}-${gender.descricao}`}
+              </option>
+            ))}
+          </select>
         </div>
-      </main>
-    </>
+        <div className="formulario-parte dois-inputs">
+          <input
+            type="number"
+            name="cpf"
+            id="cpf"
+            placeholder="CPF"
+            value={cpf}
+            onChange={(e) => setCPF(e.target.value)}
+          />
+          <input
+            type="number"
+            name="cns"
+            id="cns"
+            placeholder="CNS"
+            value={cns}
+            onChange={(e) => setCNS(e.target.value)}
+          />
+        </div>
+        <div className="formulario-parte dois-inputs">
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="E-mail"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            type="number"
+            name="crm"
+            id="crm"
+            placeholder="CRM"
+            value={crm}
+            onChange={(e) => setCRM(e.target.value)}
+          />
+        </div>
+        <div className="formulario-parte" id="tres-inputs">
+          <input
+            type="text"
+            name="data_nascimento"
+            id="data_nascimento"
+            placeholder="Data de Nascimento"
+            maxLength="10"
+            value={dataNascimento}
+            onChange={(e) => handleDateInputChange(e, setDataNascimento)}
+          />
+          <input
+            type="number"
+            name="rg"
+            id="rg"
+            placeholder="RG"
+            value={rg}
+            onChange={(e) => setRG(e.target.value)}
+          />
+          <input
+            type="text"
+            name="emissao_rg"
+            id="emissao_rg"
+            placeholder="Data de Emissão do RG"
+            maxLength="10"
+            value={dataEmissaoRG}
+            onChange={(e) => handleDateInputChange(e, setDataEmissaoRG)}
+          />
+        </div>
+        <div className="formulario-parte dois-inputs">
+          <input
+            type="text"
+            name="nome_mae"
+            id="nome_mae"
+            placeholder="Nome da mãe"
+            value={nomeMae}
+            onChange={(e) => setNomeMae(e.target.value)}
+          />
+          <input
+            type="text"
+            name="nome_pai"
+            id="nome_pai"
+            placeholder="Nome do Pai"
+            value={nomePai}
+            onChange={(e) => setNomePai(e.target.value)}
+          />
+        </div>
+
+        <button type="submit" id="criar-funcionario">
+          Criar
+        </button>
+      </form>
+    </Page>
   );
 }

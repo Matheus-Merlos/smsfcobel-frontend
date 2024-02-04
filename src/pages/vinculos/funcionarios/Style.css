@@ -4,57 +4,10 @@
     --cor-botao: #290b7a;
   }
 
-  main {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  #direita {
-    width: 83.2%;
-    height: 89.3vh;
-    float: right;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    border: 1px solid black;
-  }
-
-  #formulario-funcionario {
-    width: 85%;
-    height: 85%;
-  }
-
-  #titulo {
-    font-size: 32pt;
-  }
-
-  #descricao {
-    font-size: 20pt;
-    margin-bottom: 20px;
-  }
-
-  #aviso {
-    margin-top: 20px;
-    font-size: 18pt;
-  }
-
   #preenchimento {
     margin-top: 20px;
 
     text-align: center;
-  }
-
-  #formulario-funcionario input, select {
-    border: none;
-    border-bottom: 2px solid var(--border-color);
-    padding: 10px;
-    background-color: white;
-
-    font-size: 18pt;
-
-    margin: 1% 0 1% 0;
   }
 
   .formulario-parte {
@@ -110,23 +63,13 @@
     width: 90%;
     height: 90%;
   }
-  #titulo {
-    font-size: 28pt;
-  }
-  #descricao {
-    font-size: 16pt;
-    margin-bottom: 15px;
-  }
-  #aviso {
-    margin-top: 10px;
-    font-size: 14pt;
-  }
   #preenchimento {
     margin-top: 7px;
   }
   #formulario-funcionario input, select {
     padding: 5px;
     font-size: 16pt;
+    margin: 0.5% 0 0.5% 0;
   }
   #criar-funcionario {
     margin-top: 15px;

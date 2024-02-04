@@ -31,7 +31,7 @@ function vinculosSidebar() {
       <Item
         linkToRedirect="/vinculos/desvincular/"
         icon={desvincularIcon}
-        name="Vincular"
+        name="Desvincular"
       />
     </aside>
   );
@@ -68,12 +68,12 @@ function operadoresSidebar() {
   return (
     <aside id="sidebar">
       <Item
-        linkToRedirect="/operador/adicionar/"
+        linkToRedirect="/operadores/adicionar/"
         icon={AddOperador}
         name="Adicionar"
       />
       <Item
-        linkToRedirect="/operador/operadores/"
+        linkToRedirect="/operadores/operadores/"
         icon={OperadorIcon}
         name="Operadores"
       />

@@ -42,7 +42,7 @@ function Login() {
           <p className="aviso">
             Sem acesso? <span className="strong">Clique aqui</span>
           </p>
-          <form method="post" id="formulario" onSubmit={handleSubmit}>
+          <form method="post" id="formulario-login" onSubmit={handleSubmit}>
             <input
               type="number"
               name="cpf"
