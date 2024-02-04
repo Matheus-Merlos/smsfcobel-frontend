@@ -21,6 +21,7 @@ import VinculosPendentesCNES from './pages/vinculos_pendentes/vinculos_cnes';
 import Desvincular from './pages/vinculos/desvincular';
 
 import CriarOperador from './pages/operadores/criar_operador';
+import EditarOperador from './pages/operadores/editar_operador';
 
 function App() {
   return (
@@ -57,6 +58,10 @@ function App() {
             <Route
               path="/operadores/adicionar/"
               element={<PrivateRoute element={<CriarOperador />} />}
+            />
+            <Route
+              path="/operadores/editar/"
+              element={<PrivateRoute element={<EditarOperador />} />}
             />
           </Routes>
         </BrowserRouter>

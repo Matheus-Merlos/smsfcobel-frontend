@@ -1,0 +1,10 @@
+#formulario-editar-operador {
+  text-align: center;
+}
+
+.operador-input[readOnly] {
+  background-color: rgb(252, 225, 225);
+  cursor: not-allowed;
+
+  border-radius: 3px;
+}
