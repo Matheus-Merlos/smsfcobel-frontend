@@ -37,7 +37,7 @@ Page.defaultProps = {
 Page.propTypes = {
   pageName: PropTypes.string,
   description: PropTypes.string,
-  Sidebar: PropTypes.element.isRequired,
+  Sidebar: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
   hasTitle: PropTypes.bool.isRequired,
 };

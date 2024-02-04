@@ -1,0 +1,42 @@
+#formulario-operador {
+  text-align: center;
+}
+
+.operador-input {
+  width: 100%;
+}
+
+#perms {
+  font-size: 20pt;
+  margin: 1%;
+}
+
+#permissoes {
+  width: 100%;
+
+  padding: 1.5%;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 2%;
+}
+
+#permission {
+  display: flex;
+  align-items: center;
+  gap: 2%;
+}
+
+.dois-inputs {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.select {
+  transform: scale(1.5);
+}
+
+.permission-name {
+  font-size: 18pt;
+}

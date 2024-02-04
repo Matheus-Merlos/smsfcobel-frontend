@@ -28,6 +28,6 @@ export default function Item({ linkToRedirect, icon, name }) {
 
 Item.propTypes = {
   linkToRedirect: PropTypes.string.isRequired,
-  icon: PropTypes.element.isRequired,
+  icon: PropTypes.node.isRequired,
   name: PropTypes.string.isRequired,
 };

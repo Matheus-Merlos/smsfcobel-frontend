@@ -12,6 +12,7 @@ import ListIcon from './img/simbolo-lista.jpg';
 
 import AddOperador from './img/add-operador.svg';
 import OperadorIcon from './img/operador-icon.png';
+import EditarOperador from './img/editar-operador.png';
 
 import Item from './item';
 
@@ -76,6 +77,11 @@ function operadoresSidebar() {
         linkToRedirect="/operadores/operadores/"
         icon={OperadorIcon}
         name="Operadores"
+      />
+      <Item
+        linkToRedirect="/operadores/editar/"
+        icon={EditarOperador}
+        name="Editar"
       />
     </aside>
   );
