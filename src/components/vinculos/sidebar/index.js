@@ -74,14 +74,14 @@ function operadoresSidebar() {
         name="Adicionar"
       />
       <Item
-        linkToRedirect="/operadores/listagem/"
-        icon={OperadorIcon}
-        name="Operadores"
-      />
-      <Item
         linkToRedirect="/operadores/editar/"
         icon={EditarOperador}
         name="Editar"
+      />
+      <Item
+        linkToRedirect="/operadores/listagem/"
+        icon={OperadorIcon}
+        name="Operadores"
       />
     </aside>
   );

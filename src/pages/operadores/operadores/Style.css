@@ -11,8 +11,11 @@
 
   overflow: scroll;
 }
+#listagem-vinculos {
+  flex-grow: 1;
+}
 
-th, td{
+#listagem-vinculos th, td{
   font-size: 16pt;
 
   border: 1px solid lightgray;
@@ -33,3 +36,8 @@ tr:nth-child(odd) {
   border-collapse: collapse;
 }
 
+@media screen and (min-width: 992px) and (max-width: 1280px) {
+  #listagem-vinculos th, td{
+    font-size: 12pt;
+  }
+}

@@ -71,6 +71,11 @@ export default function EditarOperador() {
   async function handleOperatorPatch(e) {
     e.preventDefault();
 
+    if (operadorSelecionado <= 0) {
+      toast.warn('Selecione um operador antes de continuar!');
+      return;
+    }
+
     const operatorPatch = {
       name: nome,
       email,
@@ -112,6 +117,11 @@ export default function EditarOperador() {
 
   async function handleDeleteOperator(e) {
     e.preventDefault();
+
+    if (operadorSelecionado <= 0) {
+      toast.warn('Selecione um operador antes de continuar!');
+      return;
+    }
 
     try {
       await axios.delete(`api/users/${operadorSelecionado}/`);
@@ -213,12 +223,11 @@ export default function EditarOperador() {
           <button
             type="button"
             id="botao-deletar-operador"
-            disabled={isLocked}
             onClick={handleDeleteOperator}
           >
             Deletar
           </button>
-          <Botao nome="Editar" disabled={isLocked} />
+          <Botao nome="Editar" />
         </div>
       </form>
     </Page>

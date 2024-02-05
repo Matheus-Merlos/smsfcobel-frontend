@@ -3,7 +3,7 @@ import React from 'react';
 import './Style.css';
 
 import { useSelector } from 'react-redux';
-import vinculoIcon from './img/vinculo_icon.png';
+import vinculoIcon from './img/vinculo-icon.png';
 import vinculoPendenteIcon from './img/console.svg';
 import operadorIcon from './img/operador-icon.png';
 
