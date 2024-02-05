@@ -1,0 +1,35 @@
+#direita-listagem-vinculos {
+  width: 83.2%;
+  height: 89.3vh;
+  float: right;
+
+  display: flex;
+  justify-content: left;
+  align-items:flex-start;
+
+  border: 1px solid black;
+
+  overflow: scroll;
+}
+
+th, td{
+  font-size: 16pt;
+
+  border: 1px solid lightgray;
+
+  white-space: nowrap;
+  padding: 5px;
+
+  width: auto;
+}
+
+tr:nth-child(odd) {
+  background-color: #f5e8e8;
+}
+
+#listagem-vinculos {
+  width: fit-content;
+
+  border-collapse: collapse;
+}
+

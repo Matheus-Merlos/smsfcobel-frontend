@@ -22,6 +22,7 @@ import Desvincular from './pages/vinculos/desvincular';
 
 import CriarOperador from './pages/operadores/criar_operador';
 import EditarOperador from './pages/operadores/editar_operador';
+import ListagemOperadores from './pages/operadores/operadores';
 
 function App() {
   return (
@@ -62,6 +63,10 @@ function App() {
             <Route
               path="/operadores/editar/"
               element={<PrivateRoute element={<EditarOperador />} />}
+            />
+            <Route
+              path="/operadores/listagem/"
+              element={<PrivateRoute element={<ListagemOperadores />} />}
             />
           </Routes>
         </BrowserRouter>

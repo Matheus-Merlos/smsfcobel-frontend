@@ -2,9 +2,48 @@
   text-align: center;
 }
 
-.operador-input[readOnly] {
+.operador-input[readOnly]  {
   background-color: rgb(252, 225, 225);
   cursor: not-allowed;
 
   border-radius: 3px;
+}
+
+.select[disabled], button[disabled] {
+  cursor: not-allowed;
+}
+
+#botao-deletar-operador {
+  margin-top: 30px;
+  border: none;
+  background-color: rgb(255, 59, 59);
+  color: white;
+  font-size: 32pt;
+
+  display: inline-block;
+
+  border-radius: 50px;
+  width: 20%;
+  padding: 10px;
+}
+
+#botao-deletar-operador:hover {
+  cursor: pointer;
+}
+
+#botoes-operadores {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+@media screen and (min-width: 992px) and (max-width: 1280px) {
+  #botao-deletar-operador {
+    margin-top: 15px;
+    font-size: 20pt;
+
+    border-radius: 40px;
+    width: 20%;
+    padding: 15px;
+  }
 }

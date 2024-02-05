@@ -82,6 +82,13 @@ export default function EditarOperador() {
       await axios.patch(`api/users/${operadorSelecionado}/`, operatorPatch);
 
       toast.success('Operador editado com sucesso!');
+
+      setOperadorSelecionado(0);
+      setIsLocked(true);
+      setNome('');
+      setEmail('');
+      setCPF('');
+      setSelectedPermissions('');
     } catch (error) {
       toast.error(`Erro interno do servidor: ${error}`);
     }
@@ -102,6 +109,28 @@ export default function EditarOperador() {
     fetchPermissions();
     fetchOperadores();
   }, []);
+
+  async function handleDeleteOperator(e) {
+    e.preventDefault();
+
+    try {
+      await axios.delete(`api/users/${operadorSelecionado}/`);
+
+      toast.success('Operador deletado com sucesso!');
+
+      const response = await axios.get('api/users/');
+      setOperadores(response.data);
+
+      setOperadorSelecionado(0);
+      setIsLocked(true);
+      setNome('');
+      setEmail('');
+      setCPF('');
+      setSelectedPermissions('');
+    } catch (error) {
+      toast.error(`Erro interno do servidor: ${error}`);
+    }
+  }
 
   return (
     <Page
@@ -172,6 +201,7 @@ export default function EditarOperador() {
                 className="select"
                 checked={selectedPermissions.includes(permission.id)}
                 onChange={() => handleCheckboxChange(permission.id)}
+                disabled={isLocked}
               />
               <p key={permission.id} className="permission-name">
                 {formatAndCapitalize(permission.descricao)}
@@ -179,7 +209,17 @@ export default function EditarOperador() {
             </div>
           ))}
         </div>
-        <Botao nome="Editar" />
+        <div id="botoes-operadores">
+          <button
+            type="button"
+            id="botao-deletar-operador"
+            disabled={isLocked}
+            onClick={handleDeleteOperator}
+          >
+            Deletar
+          </button>
+          <Botao nome="Editar" disabled={isLocked} />
+        </div>
       </form>
     </Page>
   );
