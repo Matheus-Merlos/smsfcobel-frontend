@@ -14,6 +14,8 @@ import AddOperador from './img/add-operador.svg';
 import OperadorIcon from './img/operador-icon.png';
 import EditarOperador from './img/editar-operador.png';
 
+import UserIcon from './img/user_icon.png';
+
 import Item from './item';
 
 function vinculosSidebar() {
@@ -87,4 +89,17 @@ function operadoresSidebar() {
   );
 }
 
-export { vinculosSidebar, vinculosPendentesSidebar, operadoresSidebar };
+function userSidebar() {
+  return (
+    <aside id="sidebar">
+      <Item linkToRedirect="/user/" icon={UserIcon} name="Conta" />
+    </aside>
+  );
+}
+
+export {
+  vinculosSidebar,
+  vinculosPendentesSidebar,
+  operadoresSidebar,
+  userSidebar,
+};

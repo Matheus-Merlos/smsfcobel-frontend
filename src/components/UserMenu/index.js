@@ -11,7 +11,6 @@ import { formatCPF } from '../../services/utils';
 export default function UserMenu() {
   const userName = useSelector((state) => state.reducer.userName);
   const cpf = useSelector((state) => state.reducer.userCPF);
-  const email = useSelector((state) => state.reducer.email);
 
   const dispatch = useDispatch();
 
@@ -37,13 +36,19 @@ export default function UserMenu() {
       />
       <p>{userName}</p>
       <p>{formatCPF(cpf)}</p>
-      <p>{email}</p>
 
       <hr />
 
       <div className="user-information">
         <span className="material-symbols-outlined user-icon">person</span>
-        <a href="/user/">Minha conta</a>
+        <a
+          href="/user/"
+          onClick={() => {
+            dispatch(actions.changeMenu({ newMenu: 'Contas' }));
+          }}
+        >
+          Minha conta
+        </a>
       </div>
       <div className="user-information">
         <span className="material-symbols-outlined user-icon">
