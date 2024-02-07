@@ -27,6 +27,7 @@ import ListagemOperadores from './pages/operadores/operadores';
 import User from './pages/user';
 
 import Page404 from './pages/404';
+import ChangePassword from './pages/reset_password';
 
 function App() {
   return (
@@ -76,6 +77,7 @@ function App() {
               path="/user/"
               element={<PrivateRoute element={<User />} />}
             />
+            <Route path="/change-password/" element={<ChangePassword />} />
 
             <Route path="*" element={<Page404 />} />
           </Routes>

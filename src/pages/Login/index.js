@@ -58,7 +58,9 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
               value={password}
             />
-            <p className="strong aviso">Esqueci minha senha</p>
+            <a href="/change-password/" className="strong aviso">
+              Esqueci minha senha
+            </a>
             <input type="submit" value="Continuar" id="submit-button" />
           </form>
         </div>

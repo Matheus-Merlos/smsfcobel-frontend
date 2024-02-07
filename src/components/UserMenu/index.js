@@ -54,7 +54,7 @@ export default function UserMenu() {
         <span className="material-symbols-outlined user-icon">
           key_vertical
         </span>
-        <a href="/user/">Trocar Senha</a>
+        <a href="/change-password/">Trocar Senha</a>
       </div>
 
       <hr />
