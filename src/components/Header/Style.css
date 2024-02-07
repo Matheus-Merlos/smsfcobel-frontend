@@ -50,15 +50,36 @@
   cursor: pointer;
 }
 
-.modal {
+#user-menus {
   position: absolute;
+  width: 97%;
+  height: 0;
+
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+
+  z-index: 99;
+}
+
+.modal {
   opacity: 0;
   transition: opacity 0.3s ease;
   z-index: 100;
 }
 
-.modal.fade-in {
+.user-modal {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 100;
+}
+
+.fade-in {
   opacity: 1;
+}
+
+#perfil:hover {
+  cursor: pointer;
 }
 
 
