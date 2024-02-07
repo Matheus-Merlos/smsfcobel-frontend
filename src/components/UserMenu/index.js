@@ -2,7 +2,9 @@ import React from 'react';
 
 import './Style.css';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import * as actions from '../../store/actions';
+import history from '../../services/history';
 
 import { formatCPF } from '../../services/utils';
 
@@ -10,6 +12,14 @@ export default function UserMenu() {
   const userName = useSelector((state) => state.reducer.userName);
   const cpf = useSelector((state) => state.reducer.userCPF);
   const email = useSelector((state) => state.reducer.email);
+
+  const dispatch = useDispatch();
+
+  function handleUserLogout() {
+    dispatch(actions.userLogout());
+    history.push('/login/');
+    history.go();
+  }
 
   return (
     <div className="user-menu-principal">
@@ -44,7 +54,16 @@ export default function UserMenu() {
 
       <hr />
 
-      <div id="account-logout" className="user-information">
+      <div
+        id="account-logout"
+        className="user-information"
+        onClick={handleUserLogout}
+        onKeyDown={(e) => {
+          if (e.key === 'q') {
+            handleUserLogout();
+          }
+        }}
+      >
         <span className="material-symbols-outlined">logout</span>
         <span>Sair da conta</span>
       </div>

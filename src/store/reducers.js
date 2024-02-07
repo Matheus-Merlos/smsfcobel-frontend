@@ -5,8 +5,10 @@ const initialState = {
   isLoggedIn: false,
   accessToken: '',
   refreshToken: '',
+  userId: '',
   userName: '',
   userCPF: '',
+  userEmail: '',
   permissions: [],
 };
 
@@ -21,10 +23,16 @@ export default function reducer(state = initialState, action) {
       newState.isLoggedIn = true;
       newState.accessToken = action.payload.access;
       newState.refreshToken = action.payload.refresh;
+      newState.userId = action.payload.user_id;
       newState.userName = action.payload.user;
       newState.userCPF = action.payload.cpf;
+      newState.userEmail = action.payload.email;
       newState.permissions = action.payload.permissions;
       return newState;
+    }
+
+    case types.USER_LOGOUT: {
+      return initialState;
     }
 
     default: {

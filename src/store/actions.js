@@ -26,3 +26,9 @@ export function changeMenu(payload) {
     payload,
   };
 }
+
+export function userLogout() {
+  return {
+    type: actionTypes.USER_LOGOUT,
+  };
+}

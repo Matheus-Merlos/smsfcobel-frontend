@@ -1,0 +1,55 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.error-section {
+  display: flex;
+  align-items: center;
+  height: 95vh;
+  padding: 16px;
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.content {
+  text-align: center;
+}
+
+.error-title {
+  font-size: 6rem; /* Ajuste o tamanho da fonte conforme necessário */
+  font-weight: bold;
+  color: #333; /* Altere a cor do texto conforme necessário */
+}
+
+.error-message {
+  font-size: 2rem; /* Ajuste o tamanho da fonte conforme necessário */
+  font-weight: bold;
+}
+
+.additional-message {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.btn-back {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1.2rem; /* Ajuste o tamanho da fonte conforme necessário */
+  font-weight: bold;
+  text-decoration: none;
+  color: #fff; /* Altere a cor do texto conforme necessário */
+  background-color: #007bff; /* Altere a cor de fundo conforme necessário */
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-back:hover {
+  background-color: #0056b3; /* Altere a cor de fundo ao passar o mouse conforme necessário */
+}

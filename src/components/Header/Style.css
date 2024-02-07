@@ -80,6 +80,9 @@
 
 #perfil:hover {
   cursor: pointer;
+  h1 {
+    color: lightblue;
+  }
 }
 
 

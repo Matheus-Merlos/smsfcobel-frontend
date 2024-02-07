@@ -24,6 +24,8 @@ import CriarOperador from './pages/operadores/criar_operador';
 import EditarOperador from './pages/operadores/editar_operador';
 import ListagemOperadores from './pages/operadores/operadores';
 
+import Page404 from './pages/404';
+
 function App() {
   return (
     <Provider store={store}>
@@ -68,6 +70,8 @@ function App() {
               path="/operadores/listagem/"
               element={<PrivateRoute element={<ListagemOperadores />} />}
             />
+
+            <Route path="*" element={<Page404 />} />
           </Routes>
         </BrowserRouter>
       </PersistGate>
