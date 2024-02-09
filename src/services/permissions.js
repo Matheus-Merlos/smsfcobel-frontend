@@ -1,0 +1,3 @@
+export const VINCULOS = 'VINCULOS';
+export const VINCULOS_PENDENTES = 'VINCULOS_PENDENTES';
+export const OPERADORES = 'OPERADORES';

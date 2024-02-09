@@ -17,7 +17,12 @@ import {
   formatDate,
 } from '../../../services/utils';
 
+import useRedirect from '../../../services/redirect';
+import * as perms from '../../../services/permissions';
+
 export default function Vincular() {
+  useRedirect(perms.VINCULOS);
+
   const [funcionarios, setFuncionarios] = useState([]);
   const [functions, setFunctions] = useState([]);
   const [locals, setLocals] = useState([]);

@@ -9,8 +9,12 @@ import Header from '../../../components/Header';
 import { operadoresSidebar as Sidebar } from '../../../components/vinculos/sidebar';
 
 import { formatCPF } from '../../../services/utils';
+import useRedirect from '../../../services/redirect';
+import * as permissions from '../../../services/permissions';
 
 export default function ListagemOperadores() {
+  useRedirect(permissions.OPERADORES);
+
   const [operadores, setOperadores] = useState([]);
 
   const accessToken = useSelector((state) => state.reducer.accessToken);

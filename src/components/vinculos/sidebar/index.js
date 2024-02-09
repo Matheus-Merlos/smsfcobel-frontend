@@ -7,7 +7,6 @@ import desvincularIcon from './img/unlink_icon.png';
 
 import IDSIcon from './img/simbolo-ids.png';
 import CNESIcon from './img/simbolo-cnes.png';
-import RHIcon from './img/simbolo-rh.png';
 import ListIcon from './img/simbolo-lista.jpg';
 
 import AddOperador from './img/add-operador.svg';
@@ -52,11 +51,6 @@ function vinculosPendentesSidebar() {
         linkToRedirect="/vinculos/vinculos-cnes/"
         icon={CNESIcon}
         name="Vínculos CNES"
-      />
-      <Item
-        linkToRedirect="/vinculos/vinculos-rh/"
-        icon={RHIcon}
-        name="Vínculos RH"
       />
       <Item
         linkToRedirect="/vinculos/listagem/"

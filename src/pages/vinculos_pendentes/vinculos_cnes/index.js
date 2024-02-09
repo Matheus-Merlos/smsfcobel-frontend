@@ -10,7 +10,12 @@ import { vinculosPendentesSidebar as Sidebar } from '../../../components/vinculo
 import Vinculo from '../../../components/vinculos/vinculo_cnes';
 import history from '../../../services/history';
 
+import useRedirect from '../../../services/redirect';
+import * as perms from '../../../services/permissions';
+
 export default function VinculosPendentesCNES() {
+  useRedirect(perms.VINCULOS_PENDENTES);
+
   const [vinculosPendentes, setVinculosPendentes] = useState([]);
 
   const accessToken = useSelector((state) => state.reducer.accessToken);

@@ -10,7 +10,12 @@ import Botao from '../../../components/Botao';
 
 import axios from '../../../services/axios';
 
+import useRedirect from '../../../services/redirect';
+import * as perms from '../../../services/permissions';
+
 export default function EditarOperador() {
+  useRedirect(perms.OPERADORES);
+
   const accessToken = useSelector((state) => state.reducer.accessToken);
   axios.defaults.headers.Authorization = `Bearer ${accessToken}`;
 

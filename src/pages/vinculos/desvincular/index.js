@@ -10,8 +10,12 @@ import Page from '../../../components/Page';
 
 import axios from '../../../services/axios';
 import history from '../../../services/history';
+import useRedirect from '../../../services/redirect';
+import * as perms from '../../../services/permissions';
 
 export default function Desvincular() {
+  useRedirect(perms.VINCULOS);
+
   const [funcionariosDesvincular, setFuncionariosDesvincular] = useState([]);
   const [locaisDesvincular, setLocaisDesvincular] = useState([]);
 

@@ -16,7 +16,12 @@ import {
 
 import './Style.css';
 
+import useRedirect from '../../../services/redirect';
+import * as perms from '../../../services/permissions';
+
 export default function Funcionarios() {
+  useRedirect(perms.VINCULOS);
+
   const [genders, setGenders] = useState([]);
 
   const [nome, setNome] = useState('');
