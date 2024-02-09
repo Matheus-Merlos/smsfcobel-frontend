@@ -8,6 +8,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import './App.css';
 
+import favicon from './favicon.ico';
+
 import Login from './pages/Login';
 import Funcionarios from './pages/vinculos/funcionarios';
 import Vincular from './pages/vinculos/vincular';
@@ -32,6 +34,7 @@ import ChangePassword from './pages/reset_password';
 function App() {
   return (
     <Provider store={store}>
+      <link rel="shortcut icon" href={favicon} type="image/x-icon" />
       <ToastContainer autoClose={3000} className="toast-container" />
       <PersistGate persistor={persistor}>
         <BrowserRouter>
