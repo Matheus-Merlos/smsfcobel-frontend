@@ -48,6 +48,7 @@ export default function VinculosPendentesCNES() {
           {vinculosPendentes.map((vinculo) => (
             <Vinculo
               key={vinculo.id}
+              tipoVinculo={vinculo.tipo_vinculo}
               vinculoID={vinculo.id}
               nome={vinculo.nome}
               local={vinculo.local}

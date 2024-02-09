@@ -9,6 +9,7 @@ import axios from '../../../services/axios';
 import { formatCPF, formatCNS } from '../../../services/utils';
 
 export default function Vinculo({
+  tipoVinculo,
   profissionalID,
   vinculoID,
   nome,
@@ -78,129 +79,171 @@ export default function Vinculo({
     }
   }
 
-  function selectModal() {
-    return operadorCodigo === null ? (
-      <section id="escurecimento">
-        <div id="vinculo-modal">
-          <h1 id="titulo-modal">Adicionar Vínculo</h1>
-          <hr />
+  const modalComInput = (
+    <section id="escurecimento">
+      <div id="vinculo-modal">
+        <h1 id="titulo-modal">Adicionar Vínculo</h1>
+        <hr />
+        <p className="titulo-vinculo">
+          Nome: <span className="enfase">{nome}</span>
+        </p>
+        <div className="informacoes-vinculo">
           <p className="titulo-vinculo">
-            Nome: <span className="enfase">{nome}</span>
+            CPF: <span className="enfase">{formatCPF(cpf)}</span>
           </p>
-          <div className="informacoes-vinculo">
-            <p className="titulo-vinculo">
-              CPF: <span className="enfase">{formatCPF(cpf)}</span>
-            </p>
-            <p className="titulo-vinculo">
-              RG: <span className="enfase">{rg}</span>
-            </p>
-            <p className="titulo-vinculo">
-              Expedição:<span className="enfase">{expedicaoRG}</span>
-            </p>
-          </div>
-          <div className="informacoes-vinculo">
-            <p className="titulo-vinculo">
-              Local: <span className="enfase">{local}</span>
-            </p>
-            <p className="titulo-vinculo">
-              Data de Nascimento:{' '}
-              <span className="enfase">{dataNascimento}</span>
-            </p>
-          </div>
           <p className="titulo-vinculo">
-            E-mail: <span className="enfase">{email}</span>
+            RG: <span className="enfase">{rg}</span>
           </p>
-          <div className="informacoes-vinculo">
-            <p className="titulo-vinculo">
-              Nome da Mãe: <span className="enfase">{nomeMae}</span>
-            </p>
-            <p className="titulo-vinculo">
-              Nome do Pai: <span className="enfase">{nomePai}</span>
-            </p>
-          </div>
           <p className="titulo-vinculo">
-            CNS: <span className="enfase">{formatCNS(cns)}</span>
+            Expedição:<span className="enfase">{expedicaoRG}</span>
           </p>
-          <div className="informacoes-vinculo">
-            <p className="titulo-vinculo">
-              Função: <span className="enfase">{funcao}</span>
-            </p>
-            <p className="titulo-vinculo">
-              Sexo: <span className="enfase">{sexo}</span>
-            </p>
-          </div>
-          <div className="informacoes-vinculo inputs-vinculo-completo">
-            <div>
-              <label
-                htmlFor="operador"
-                className="titulo-vinculo label-vinculo-completo"
-              >
-                Operador:
-              </label>
-              <input
-                type="number"
-                name="operador"
-                id="operador"
-                placeholder="Código de Operador"
-                onChange={(e) => setOperador(e.target.value)}
-              />
-            </div>
-            <div>
-              <label htmlFor="profissional" className="titulo-vinculo">
-                Profissional:
-              </label>
-              <input
-                type="number"
-                name="profissional"
-                id="profissional"
-                placeholder="Código de Profissional"
-                onChange={(e) => setProfissional(e.target.value)}
-              />
-            </div>
-          </div>
-          <div id="botoes">
-            <button type="button" onClick={toggleModal}>
-              Cancelar
-            </button>
-            <button type="button" onClick={handleVinculoPatch}>
-              Adicionar
-            </button>
-          </div>
         </div>
-      </section>
-    ) : (
-      <section id="escurecimento">
-        <div id="vinculo-modal">
-          <h1 id="titulo-modal">Adicionar Vínculo</h1>
-          <hr />
-          <p className="titulo-vinculo">
-            Nome: <span className="enfase">{nome}</span>
-          </p>
+        <div className="informacoes-vinculo">
           <p className="titulo-vinculo">
             Local: <span className="enfase">{local}</span>
           </p>
           <p className="titulo-vinculo">
+            Data de Nascimento: <span className="enfase">{dataNascimento}</span>
+          </p>
+        </div>
+        <p className="titulo-vinculo">
+          E-mail: <span className="enfase">{email}</span>
+        </p>
+        <div className="informacoes-vinculo">
+          <p className="titulo-vinculo">
+            Nome da Mãe: <span className="enfase">{nomeMae}</span>
+          </p>
+          <p className="titulo-vinculo">
+            Nome do Pai: <span className="enfase">{nomePai}</span>
+          </p>
+        </div>
+        <p className="titulo-vinculo">
+          CNS: <span className="enfase">{formatCNS(cns)}</span>
+        </p>
+        <div className="informacoes-vinculo">
+          <p className="titulo-vinculo">
             Função: <span className="enfase">{funcao}</span>
           </p>
-          <div className="informacoes-vinculo">
-            <p className="titulo-vinculo">
-              Operador: <span className="enfase">{operadorCodigo}</span>
-            </p>
-            <p className="titulo-vinculo">
-              Profissional: <span className="enfase">{profissionalCodigo}</span>
-            </p>
+          <p className="titulo-vinculo">
+            Sexo: <span className="enfase">{sexo}</span>
+          </p>
+        </div>
+        <div className="informacoes-vinculo inputs-vinculo-completo">
+          <div>
+            <label
+              htmlFor="operador"
+              className="titulo-vinculo label-vinculo-completo"
+            >
+              Operador:
+            </label>
+            <input
+              type="number"
+              name="operador"
+              id="operador"
+              placeholder="Código de Operador"
+              onChange={(e) => setOperador(e.target.value)}
+            />
           </div>
-          <div id="botoes">
-            <button type="button" onClick={toggleModal}>
-              Cancelar
-            </button>
-            <button type="button" onClick={patchVinculo}>
-              Adicionar
-            </button>
+          <div>
+            <label htmlFor="profissional" className="titulo-vinculo">
+              Profissional:
+            </label>
+            <input
+              type="number"
+              name="profissional"
+              id="profissional"
+              placeholder="Código de Profissional"
+              onChange={(e) => setProfissional(e.target.value)}
+            />
           </div>
         </div>
-      </section>
-    );
+        <div id="botoes">
+          <button type="button" onClick={toggleModal}>
+            Cancelar
+          </button>
+          <button type="button" onClick={handleVinculoPatch}>
+            Adicionar
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+
+  const modalSemInput = (
+    <section id="escurecimento">
+      <div id="vinculo-modal">
+        <h1 id="titulo-modal">Adicionar Vínculo</h1>
+        <hr />
+        <p className="titulo-vinculo">
+          Nome: <span className="enfase">{nome}</span>
+        </p>
+        <p className="titulo-vinculo">
+          Local: <span className="enfase">{local}</span>
+        </p>
+        <p className="titulo-vinculo">
+          Função: <span className="enfase">{funcao}</span>
+        </p>
+        <div className="informacoes-vinculo">
+          <p className="titulo-vinculo">
+            Operador: <span className="enfase">{operadorCodigo}</span>
+          </p>
+          <p className="titulo-vinculo">
+            Profissional: <span className="enfase">{profissionalCodigo}</span>
+          </p>
+        </div>
+        <div id="botoes">
+          <button type="button" onClick={toggleModal}>
+            Cancelar
+          </button>
+          <button type="button" onClick={patchVinculo}>
+            Adicionar
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+
+  const modalExclusão = (
+    <section id="escurecimento">
+      <div id="vinculo-modal">
+        <h1 id="titulo-modal">Remover Vínculo</h1>
+        <hr />
+        <p className="titulo-vinculo">
+          Nome: <span className="enfase">{nome}</span>
+        </p>
+        <p className="titulo-vinculo">
+          Local: <span className="enfase">{local}</span>
+        </p>
+        <p className="titulo-vinculo">
+          Função: <span className="enfase">{funcao}</span>
+        </p>
+        <div className="informacoes-vinculo">
+          <p className="titulo-vinculo">
+            Operador: <span className="enfase">{operadorCodigo}</span>
+          </p>
+          <p className="titulo-vinculo">
+            Profissional:
+            <span className="enfase">{profissionalCodigo}</span>
+          </p>
+        </div>
+        <div id="botoes">
+          <button type="button" onClick={toggleModal}>
+            Cancelar
+          </button>
+          <button type="button" onClick={patchVinculo}>
+            Adicionar
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+
+  function selectModal() {
+    if (operadorCodigo === null && tipoVinculo === 'Inclusão')
+      return modalComInput;
+    if (operadorCodigo !== null && tipoVinculo === 'Inclusão')
+      return modalSemInput;
+    return modalExclusão;
   }
 
   return (
@@ -239,6 +282,7 @@ Vinculo.defaultProps = {
 };
 
 Vinculo.propTypes = {
+  tipoVinculo: PropTypes.string.isRequired,
   profissionalID: PropTypes.string.isRequired,
   vinculoID: PropTypes.node.isRequired,
   nome: PropTypes.string.isRequired,

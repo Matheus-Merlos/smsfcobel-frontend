@@ -9,6 +9,7 @@ import axios from '../../../services/axios';
 import { formatCPF, formatCNS } from '../../../services/utils';
 
 export default function Vinculo({
+  tipoVinculo,
   vinculoID,
   nome,
   local,
@@ -76,7 +77,11 @@ export default function Vinculo({
       {modalIsVisible && (
         <section id="escurecimento">
           <div id="vinculo-modal">
-            <h1 id="titulo-modal">Adicionar Vínculo</h1>
+            <h1 id="titulo-modal">
+              {tipoVinculo === 'Inclusão'
+                ? 'Adicionar Vínculo'
+                : 'Remover Vínculo'}
+            </h1>
             <hr />
             <p className="titulo-vinculo">
               Nome: <span className="enfase">{nome}</span>
@@ -117,7 +122,10 @@ export default function Vinculo({
                 CNS: <span className="enfase">{formatCNS(cns)}</span>
               </p>
               <p className="titulo-vinculo">
-                CRM: <span className="enfase">{crm}</span>
+                CRM:{' '}
+                <span className="enfase">
+                  {crm === null ? 'Não possui' : crm}
+                </span>
               </p>
             </div>
             <div className="informacoes-vinculo">
@@ -143,9 +151,13 @@ export default function Vinculo({
   );
 }
 
+Vinculo.defaultProps = {
+  crm: 'Não possui',
+};
+
 Vinculo.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
-  vinculoID: PropTypes.any.isRequired,
+  tipoVinculo: PropTypes.string.isRequired,
+  vinculoID: PropTypes.node.isRequired,
   nome: PropTypes.string.isRequired,
   local: PropTypes.string.isRequired,
   criacao: PropTypes.string.isRequired,
@@ -158,7 +170,7 @@ Vinculo.propTypes = {
   nomeMae: PropTypes.string.isRequired,
   nomePai: PropTypes.string.isRequired,
   cns: PropTypes.string.isRequired,
-  crm: PropTypes.string.isRequired,
+  crm: PropTypes.string,
   funcao: PropTypes.string.isRequired,
   sexo: PropTypes.string.isRequired,
   dataNascimento: PropTypes.string.isRequired,

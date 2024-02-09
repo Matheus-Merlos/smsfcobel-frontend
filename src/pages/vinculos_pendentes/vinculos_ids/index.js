@@ -48,6 +48,7 @@ export default function VinculosPendentes() {
           {vinculosPendentes.map((vinculo) => (
             <Vinculo
               key={vinculo.id}
+              tipoVinculo={vinculo.tipo_vinculo}
               profissionalID={vinculo.profissional_id}
               vinculoID={vinculo.id}
               nome={vinculo.nome}

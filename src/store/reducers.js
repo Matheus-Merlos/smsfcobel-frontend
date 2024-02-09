@@ -1,4 +1,5 @@
 /* eslint-disable default-param-last */
+import { toast } from 'react-toastify';
 import * as types from './types';
 
 const initialState = {
@@ -29,6 +30,11 @@ export default function reducer(state = initialState, action) {
       newState.userEmail = action.payload.email;
       newState.permissions = action.payload.permissions;
       return newState;
+    }
+
+    case types.LOGIN_FAILURE: {
+      toast.error('CPF ou Senha incorretos!');
+      return state;
     }
 
     case types.USER_LOGOUT: {
